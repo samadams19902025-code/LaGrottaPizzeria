@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Menu — La Grotta · Leipzig</title>
+<meta name="description" content="The full menu at La Grotta Leipzig — 100+ wood-fired pizzas, handmade pasta, antipasti, secondi, dolci and the deepest Italian wine cellar in Saxony." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" />
+<style>
+  :root {
+    --terracotta: #C75B39;
+    --terracotta-deep: #A4421F;
+    --olive: #4A5A3C;
+    --olive-deep: #2F3A26;
+    --cream: #F4ECDE;
+    --cream-warm: #EDE0CC;
+    --cream-soft: #FAF5EB;
+    --paper: #F8F1E2;
+    --charcoal: #3B3029;
+    --charcoal-deep: #1F1813;
+    --charcoal-soft: #5A4A40;
+    --gold: #C9A86C;
+    --gold-soft: #DCBD86;
+    --ink: #2A201A;
+    --line: rgba(59, 48, 41, 0.18);
+    --line-strong: rgba(59, 48, 41, 0.32);
+
+    --serif: 'Cormorant Garamond', 'Times New Roman', serif;
+    --sans: 'DM Sans', 'Helvetica Neue', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 140px; }
+  body {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    background:
+      radial-gradient(circle at 0% 0%, rgba(199, 91, 57, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 100% 100%, rgba(74, 90, 60, 0.05) 0%, transparent 40%),
+      var(--paper);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; text-decoration: none; }
+
+  .container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+  .container-narrow { max-width: 980px; margin: 0 auto; padding: 0 32px; }
+
+  /* ---------------- NAV (same family as homepage) ---------------- */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 18px 0;
+    background: rgba(31, 24, 19, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(201, 168, 108, 0.18);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+  .nav-logo { display: flex; align-items: baseline; gap: 12px; color: var(--cream); }
+  .nav-logo .mark { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 28px; line-height: 1; }
+  .nav-logo .sub { font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase; font-weight: 500; opacity: 0.72; }
+  .nav-links { display: flex; align-items: center; gap: 32px; }
+  .nav-links a {
+    color: var(--cream);
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    font-weight: 500; opacity: 0.82;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--gold-soft); }
+  .nav-cta {
+    background: var(--terracotta);
+    color: var(--cream-soft) !important;
+    padding: 10px 22px;
+    border-radius: 999px;
+    opacity: 1 !important;
+    letter-spacing: 0.16em !important;
+  }
+  .nav-cta:hover { background: var(--terracotta-deep); }
+  @media (max-width: 880px) { .nav-links a:not(.nav-cta):not(.home) { display: none; } }
+
+  /* ---------------- TITLE BLOCK ---------------- */
+  .title-block {
+    padding: 200px 0 60px;
+    text-align: center;
+  }
+  .title-block .ornament {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .title-block .ornament::before, .title-block .ornament::after {
+    content: ""; width: 36px; height: 1px; background: currentColor; opacity: 0.5;
+  }
+  .title-block h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-style: italic;
+    font-size: clamp(72px, 12vw, 180px);
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+    color: var(--charcoal);
+    margin-bottom: 24px;
+  }
+  .title-block .sub {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--charcoal-soft);
+    max-width: 640px;
+    margin: 0 auto 36px;
+    line-height: 1.5;
+  }
+  .title-block .meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 12px;
+    color: var(--charcoal-soft);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .title-block .meta .dot { width: 3px; height: 3px; background: var(--gold); border-radius: 50%; }
+
+  /* ---------------- STICKY TAB BAR ---------------- */
+  .tabs-wrap {
+    position: sticky;
+    top: 76px;
+    z-index: 50;
+    background: var(--paper);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 80px;
+  }
+  .tabs {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    padding: 4px 32px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    flex-shrink: 0;
+    padding: 18px 22px;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--charcoal-soft);
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .tab:hover { color: var(--charcoal); }
+  .tab.active { color: var(--terracotta); border-bottom-color: var(--terracotta); }
+
+  /* ---------------- SECTION SCAFFOLD ---------------- */
+  .menu-section { padding: 0 0 120px; }
+  .section-head {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: end;
+    gap: 32px;
+    margin-bottom: 56px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  @media (max-width: 760px) {
+    .section-head { grid-template-columns: 1fr; gap: 16px; }
+  }
+  .section-head .num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 56px;
+    line-height: 0.9;
+    color: var(--gold);
+    letter-spacing: -0.02em;
+  }
+  .section-head .title-col h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(40px, 5vw, 60px);
+    line-height: 1;
+    letter-spacing: -0.015em;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+  }
+  .section-head .title-col h2 em { font-style: italic; color: var(--terracotta); font-weight: 400; }
+  .section-head .title-col .name-it {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--charcoal-soft);
+    font-size: 18px;
+    letter-spacing: 0.02em;
+  }
+  .section-head .count {
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--charcoal-soft);
+    text-align: right;
+  }
+  .section-head .count strong {
+    display: block;
+    font-family: var(--serif);
+    font-size: 32px;
+    color: var(--terracotta);
+    line-height: 1;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+  }
+
+  .section-blurb {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--charcoal-soft);
+    max-width: 740px;
+    margin-bottom: 56px;
+  }
+
+  /* ---------------- DISH LIST ---------------- */
+  .dishes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 64px;
+  }
+  @media (max-width: 760px) { .dishes { grid-template-columns: 1fr; gap: 4px; } }
+  .dish {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: baseline;
+    padding: 22px 0;
+    border-bottom: 1px dotted var(--line);
+  }
+  .dish-main { min-width: 0; }
+  .dish-name {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.15;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+    letter-spacing: -0.005em;
+  }
+  .dish-name .badges {
+    display: inline-flex;
+    gap: 6px;
+    margin-left: 6px;
+    vertical-align: 2px;
+  }
+  .badge {
+    font-family: var(--sans);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    line-height: 1.2;
+  }
+  .badge.veg { background: rgba(74, 90, 60, 0.14); color: var(--olive-deep); }
+  .badge.hot { background: rgba(199, 91, 57, 0.14); color: var(--terracotta-deep); }
+  .badge.new { background: rgba(201, 168, 108, 0.2); color: #8a6e3a; }
+  .badge.signature { background: var(--charcoal); color: var(--cream-soft); }
+  .dish-desc {
+    font-size: 14px;
+    color: var(--charcoal-soft);
+    line-height: 1.5;
+    font-family: var(--sans);
+  }
+  .dish-price {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--terracotta);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+
+  /* Sub-headings within a category */
+  .sub-head {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 28px 0 4px;
+    padding-top: 12px;
+  }
+  .sub-head:first-of-type { margin-top: 0; padding-top: 0; }
+  .sub-head .label {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .sub-head .it {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--charcoal-soft);
+    font-size: 16px;
+  }
+  .sub-head::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  /* ---------------- PIZZA INTRO STRIP ---------------- */
+  .pizza-intro {
+    background: var(--charcoal-deep);
+    color: var(--cream);
+    padding: 64px 0;
+    margin: 0 0 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .pizza-intro::before {
+    content: ""; position: absolute;
+    top: -20%; right: -10%;
+    width: 50vw; height: 50vw; max-width: 600px; max-height: 600px;
+    background: radial-gradient(circle, rgba(199, 91, 57, 0.2) 0%, rgba(199, 91, 57, 0) 60%);
+    pointer-events: none;
+  }
+  .pizza-intro-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    gap: 32px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 880px) { .pizza-intro-grid { grid-template-columns: 1fr 1fr; } .pizza-intro-grid > :first-child { grid-column: span 2; } }
+  .pizza-intro-lead h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 34px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .pizza-intro-lead h3 em { font-style: italic; color: var(--gold-soft); font-weight: 400; }
+  .pizza-intro-lead p {
+    font-family: var(--serif);
+    color: rgba(245, 237, 224, 0.7);
+    font-size: 16px;
+  }
+  .pi-stat .n {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 38px;
+    line-height: 1;
+    color: var(--gold-soft);
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .pi-stat .n em { font-style: italic; font-weight: 400; }
+  .pi-stat .l {
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(245, 237, 224, 0.55);
+  }
+
+  /* Pizza grid is a bit denser */
+  .dishes.pizza-list {
+    gap: 0 56px;
+  }
+  .dishes.pizza-list .dish {
+    padding: 18px 0;
+  }
+  .dishes.pizza-list .dish-name { font-size: 21px; }
+  .dishes.pizza-list .dish-desc { font-size: 13.5px; }
+
+  /* ---------------- WINE / DRINKS SPLIT ---------------- */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+  @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: 32px; } }
+  .split-col h4 {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 26px;
+    color: var(--charcoal);
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .drink-row {
+    display: flex; justify-content: space-between; gap: 16px;
+    padding: 10px 0; align-items: baseline;
+    border-bottom: 1px dotted var(--line);
+    font-family: var(--serif);
+    font-size: 18px;
+  }
+  .drink-row .name { color: var(--charcoal); }
+  .drink-row .name .it { color: var(--charcoal-soft); font-style: italic; font-size: 14px; margin-left: 6px; }
+  .drink-row .price { color: var(--terracotta); font-weight: 500; font-variant-numeric: tabular-nums; }
+
+  /* ---------------- FOOTER NOTE ---------------- */
+  .footer-note {
+    background: var(--charcoal-deep);
+    color: var(--cream);
+    padding: 80px 0;
+    text-align: center;
+  }
+  .footer-note .ornament {
+    display: inline-flex; align-items: center; gap: 16px;
+    color: var(--gold-soft); font-size: 11px;
+    letter-spacing: 0.4em; text-transform: uppercase; margin-bottom: 24px;
+  }
+  .footer-note .ornament::before, .footer-note .ornament::after {
+    content: ""; width: 36px; height: 1px; background: currentColor; opacity: 0.5;
+  }
+  .footer-note h3 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(36px, 4.5vw, 56px);
+    line-height: 1; letter-spacing: -0.015em;
+    margin-bottom: 18px;
+  }
+  .footer-note h3 em { font-style: italic; color: var(--gold-soft); font-weight: 400; }
+  .footer-note p {
+    font-family: var(--serif);
+    font-size: 19px;
+    color: rgba(245, 237, 224, 0.78);
+    max-width: 600px;
+    margin: 0 auto 32px;
+    line-height: 1.5;
+  }
+  .footer-note .ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 28px; border-radius: 999px;
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600;
+    border: 1px solid transparent;
+    transition: transform 0.2s, background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .btn-primary { background: var(--terracotta); color: var(--cream-soft); }
+  .btn-primary:hover { background: var(--terracotta-deep); transform: translateY(-2px); }
+  .btn-ghost { color: var(--cream); border-color: rgba(245, 237, 224, 0.45); }
+  .btn-ghost:hover { background: rgba(245, 237, 224, 0.1); border-color: var(--cream); }
+
+  /* Allergens legend */
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 16px 24px;
+    padding: 24px 0 0;
+    font-size: 12px;
+    color: var(--charcoal-soft);
+    border-top: 1px solid var(--line);
+    margin-top: 48px;
+  }
+  .legend .item { display: inline-flex; align-items: center; gap: 8px; }
+
+  /* Fade-in */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .reveal.in { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="mark">La Grotta</span>
+      <span class="sub">Leipzig · Est. 2001</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="home">Home</a>
+      <a href="#antipasti">Antipasti</a>
+      <a href="#pizza">Pizza</a>
+      <a href="#pasta">Pasta</a>
+      <a href="#secondi">Secondi</a>
+      <a href="#dolci">Dolci</a>
+      <a href="index.html#reserve" class="nav-cta">Reserve</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ TITLE ============ -->
+<header class="title-block">
+  <div class="container">
+    <div class="ornament">Il Menù della Casa</div>
+    <h1>La Carta</h1>
+    <p class="sub">Antipasti, primi, oltre cento pizze cotte nel forno a legna, secondi di carne e di pesce, e dolci della casa — fatti ogni giorno, come si deve.</p>
+    <div class="meta">
+      <span>Prices in € · incl. VAT</span>
+      <span class="dot"></span>
+      <span>Updated weekly</span>
+      <span class="dot"></span>
+      <span>Allergens on request</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ STICKY TABS ============ -->
+<div class="tabs-wrap">
+  <div class="container">
+    <div class="tabs" id="tabs">
+      <a class="tab" href="#antipasti">Antipasti</a>
+      <a class="tab" href="#zuppe">Zuppe & Insalate</a>
+      <a class="tab" href="#pizza">Pizza · 104</a>
+      <a class="tab" href="#pasta">Pasta</a>
+      <a class="tab" href="#risotti">Risotti</a>
+      <a class="tab" href="#secondi">Secondi</a>
+      <a class="tab" href="#bambini">Per i Bambini</a>
+      <a class="tab" href="#dolci">Dolci</a>
+      <a class="tab" href="#vini">Vini & Bevande</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ANTIPASTI ============ -->
+<section class="menu-section" id="antipasti">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="num">I.</div>
+      <div class="title-col">
+        <h2>To <em>Begin</em></h2>
+        <div class="name-it">Antipasti della Casa</div>
+      </div>
+      <div class="count"><strong>14</strong>small plates</div>
+    </div>
+    <p class="section-blurb reveal">Plates to share before the table fills with pizza and pasta. We bake the bread, cure the salame, and roll the burrata in from Andria twice a week.</p>
+
+    <div class="dishes">
+      <div class="dish">
+        <div class="dish-main">
+          <div class="dish-name">Bruschetta al Pomodoro <span class="badges"><span class="badge veg">veg</span></span></div>
+          <div class="dish-desc">Sourdough from our oven, San Marzano, garlic, basil, Sicilian olive oil.</div>
+        </div>
+        <div class="dish-price">7,80</div>
+      </div>
+      <div class="dish">
+        <div class="dish-main">
+          <div class="dish-name">Burrata di Andria <span class="badges"><span class="badge veg">veg</span><span class="badge signature">signature</span></span></div>
+          <div class="dish-desc">Flown in twice a week. Heirloom tomatoes, Taggiasca olives, basil oil, salt flakes.</div>
+        </div>
+        <div class="dish-price">14,90</div>
+      </div>
+      <div class="dish">
+        <div class="dish-main">
+          <div class="dish-name">Prosciutto di Parma 24 Mesi</div>
+          <div class="dish-desc">Hand-carved at the table. Served with grissini and a wedge of Parmigiano-Reggiano 30 mesi.</div>
+        </div>
+        <div class="dish-price">16,50</div>
+      </div>
+      <div class="dish">
+        <div class="dish-main">
+          <div class="dish-name">Antipasto della Casa</div>
+          <div class="dish-desc">Five cured meats, three cheeses, marinated vegetables, focaccia. For two to share.</div>
+        </div>
+        <div class="dish-price">26,00</div>
+      </div>
+      <div class="dish">
+        <div class="dish-main">
+          <div class="dish-name">Carpaccio di Manzo</div>
+          <div class="dish-desc">Sliced raw Saxon beef, rocket, capers, shaved Parmigiano, lemon, truffle oil.</div>
+        </div>
+        <div class="dish-price">15,90</div>
+      </div>
+      <div class="dish">
+        <div class="dish-main">
+          <div class="dish-name">Vitello Tonnato</div>
+          <div class="dish-desc">Slow-roasted veal, classic tuna and caper cream, salted capers from Pantelleria.</div>
+        </div>
+        <div class="dish-price">14,50</div>
+      </div>
+      <div class="dish">
+        <div class="dish-main">
+          <div class="dish-name">Caprese di Bufala <span class="badges"><span class="badge veg">veg</span></span></div>
+          <div class="dish-desc">Mozzarella di bufala, vine tomatoes, basil, aged balsamic from Modena.</div>
+        </div>
+        <div class="dish-price">13,90</div>
+      </div>
+      <div class="dish">
+        <div class="dish-main">
+          <div class="dish-name">Polpo alla Griglia</div>
+          <div class="dish-desc">Grilled octopus, white bean purée, smoked paprika, salsa verde.</div>
+        </div>
+        <div class="dish-price">18,90</div>
+      </div>
+      <div class="dish">
+        <div class="dish-main">
+          <div class="dish-name">Fritto Misto di Mare</div>
+          <div class="dish-desc">Calamari, prawns, whitebait, lemon, saffron mayonnaise.</div>
+        </div>
+        <div class="dish-price">16,90</div>
+      </div>
+      <div class="dish">
+        <div class="dish-main">
+          <div class="dish-name">Arancini Siciliani <span class="badges"><span class="badge veg">veg</span></span></div>
+          <div class="dish-desc">Saffron risotto balls, mozzarella, slow ragù — three pieces, San Marzano sugo.</div>
+        </div>
+        <div class="dish-price">9,90</div>
+      </div>
+      <div class="dish">
+        <div class="dish-main">
+          <div class="dish-name">Melanzane alla Parmigiana <span class="badges"><span class="badge veg">veg</span></span></div>
+          <div class="dish-desc">Layered aubergine, San Marzano, Parmigiano, fior-di-latte, basil.</div>
+        </div>
+        <div class="dish-price">11,90</div>
+      </div>
+      <div class="dish">
+        <div class="dish-main">
+          <div class="dish-name">Tartare di Tonno</div>
+          <div class="dish-desc">Yellowfin tuna tartare, avocado, capers, lemon, crisp focaccia.</div>
+        </div>
+        <div class="dish-price">17,50</div>
+      </div>
+      <div class="dish">
+        <div class="dish-main">
+          <div class="dish-name">Funghi al Tegamino <span class="badges"><span class="badge veg">veg</span></span></div>
+          <div class="dish-desc">Pan-roasted porcini, garlic, parsley, white wine, sourdough.</div>
+        </div>
+        <div class="dish-price">12,90</div>
+      </div>
+      <div class="dish">
+        <div class="dish-main">
+          <div class="dish-name">Tagliere Vegetariano <span class="badges"><span class="badge veg">veg</span></span></div>
+          <div class="dish-desc">Grilled vegetables, hummus di ceci, burrata, focaccia, Taggiasca olives.</div>
+        </div>
+        <div class="dish-price">15,50</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ZUPPE & INSALATE ============ -->
+<section class="menu-section" id="zuppe">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="num">II.</div>
+      <div class="title-col">
+        <h2>Lighter <em>Things</em></h2>
+        <div class="name-it">Zuppe & Insalate</div>
+      </div>
+      <div class="count"><strong>9</strong>soups & salads</div>
+    </div>
+
+    <div class="dishes">
+      <div class="sub-head"><span class="label">Zuppe</span><span class="it">le minestre della casa</span></div>
+      <div class="dish">
+        <div class="dish-main">
+          <div class="dish-name">Minestrone della Nonna <span class="badges"><span class="badge veg">veg</span></span></div>
+          <div class="dish-desc">Seasonal vegetables, borlotti beans, ditalini, Parmigiano rind broth.</div>
+        </div>
+        <div class="dish-price">9,50</div>
+      </div>
+      <div class="dish">
+        <div class="dish-main">
+          <div class="dish-name">Zuppa di Pesce</div>
+          <div class="dish-desc">Mussels, clams, prawns, monkfish, saffron-tomato brodo, garlic bread.</div>
+        </div>
+        <div class="dish-price">17,90</div>
+      </div>
+      <div class="dish">
+        <div class="dish-main">
+          <div class="dish-name">Pappa al Pomodoro <span class="badges"><span class="badge veg">veg</span></span></div>
+          <div class="dish-desc">Tuscan bread-and-tomato soup, basil oil, aged Pecorino.</div>
+        </div>
+        <div class="dish-price">9,90</div>
+      </div>
+      <div class="dish">
+        <div class="dish-main">
+          <div class="dish-name">Ribollita Toscana <span class="badges"><span class="badge veg">veg</span></span></div>
+          <div class="dish-desc">Twice-cooked cavolo nero, cannellini, day-old sourdough, Sicilian olive oil.</div>
+        </div>
+        <div class="dish-price">10,50</div>
+      </div>
+
+      <div class="sub-head"><span class="label">Insalate</span><span class="it">le insalate fresche</span></div>
+      <div class="dish">
+        <div class="dish-main">
+          <div class="dish-name">Insalata Mista <span class="badges"><span class="badge veg">veg</span></span></div>
+          <div class="dish-desc">Market leaves, cherry tomato, cucumber, carrot, house dressing.</div>
+        </div>
+        <div class="dish-price">8,50</div>
+      </div>
+      <div class="dish">
+        <div class="dish-main">
+          <div class="dish-name">Insalata Cesare</div>
+          <div class="dish-desc">Romaine, anchovy dressing, Parmigiano, sourdough croutons, soft egg.</div>
+        </div>
+        <div class="dish-price">12,90</div>
+      </div>
+      <div class="dish">
+        <div class="dish-main">
+          <div class="dish-name">Insalata di Pollo Grigliato</div>
+          <div class="dish-desc">Cesare base with grilled corn-fed chicken breast and crispy pancetta.</div>
+        </div>
+        <div class="dish-price">15,90</div>
+      </div>
+      <div class="dish">
+        <div class="dish-main">
+          <div class="dish-name">Insalata di Tonno</div>
+          <div class="dish-desc">Seared yellowfin, white bean, red onion, capers, lemon-anchovy vinaigrette.</div>
+        </div>
+        <div class="dish-price">17,50</div>
+      </div>
+      <div class="dish">
+        <div class="dish-main">
+          <div class="dish-name">Caprese di Bufala XL <span class="badges"><span class="badge veg">veg</span></span></div>
+          <div class="dish-desc">Whole burrata, three heirloom tomatoes, Genovese pesto, focaccia.</div>
+        </div>
+        <div class="dish-price">16,90</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PIZZA INTRO STRIP ============ -->
+<section class="pizza-intro" id="pizza">
+  <div class="container pizza-intro-grid">
+    <div class="pizza-intro-lead">
+      <h3>Pizza · <em>centoquattro</em></h3>
+      <p>One hundred and four pizzas, one fire, every dough rested 48 hours.</p>
+    </div>
+    <div class="pi-stat"><div class="n">480<em>°</em></div><div class="l">Oven floor</div></div>
+    <div class="pi-stat"><div class="n">90<em>s</em></div><div class="l">In the fire</div></div>
+    <div class="pi-stat"><div class="n">48<em>h</em></div><div class="l">Dough rest</div></div>
+    <div class="pi-stat"><div class="n">11<em>€</em></div><div class="l">From / starting</div></div>
+  </div>
+</section>
+
+<!-- ============ PIZZA SECTIONS ============ -->
+<section class="menu-section" style="padding-top: 0;">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="num">III.</div>
+      <div class="title-col">
+        <h2>The <em>Pizza</em></h2>
+        <div class="name-it">Le Pizze del Forno a Legna</div>
+      </div>
+      <div class="count"><strong>104</strong>wood-fired pizzas</div>
+    </div>
+    <p class="section-blurb reveal">All pizzas 32 cm. Extra ingredients +1,90 each. Gluten-free base +3,50. Half-and-half by request (charged at higher price).</p>
+
+    <div class="dishes pizza-list">
+      <!-- ROSSE -->
+      <div class="sub-head"><span class="label">Le Rosse · Classiche</span><span class="it">tomato base</span></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Marinara <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">San Marzano, garlic, oregano, Sicilian olive oil.</div></div><div class="dish-price">11,00</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Margherita <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">San Marzano, fior-di-latte, basil, olive oil.</div></div><div class="dish-price">12,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Margherita di Bufala <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">San Marzano, mozzarella di bufala DOP, basil.</div></div><div class="dish-price">14,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Napoletana</div><div class="dish-desc">San Marzano, fior-di-latte, anchovies, capers, olives, oregano.</div></div><div class="dish-price">13,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Romana</div><div class="dish-desc">Anchovies, capers, oregano, garlic — the original Roman.</div></div><div class="dish-price">13,00</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Diavola <span class="badges"><span class="badge hot">spicy</span></span></div><div class="dish-desc">Spicy Calabrian salame, chilli, fior-di-latte.</div></div><div class="dish-price">13,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Diavola della Casa <span class="badges"><span class="badge hot">spicy</span><span class="badge signature">signature</span></span></div><div class="dish-desc">Diavola finished with chilli-honey from the oven and fresh basil.</div></div><div class="dish-price">14,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Salame Milano</div><div class="dish-desc">Mild salame Milano, fior-di-latte, oregano.</div></div><div class="dish-price">13,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Prosciutto Cotto</div><div class="dish-desc">Italian cooked ham, fior-di-latte.</div></div><div class="dish-price">13,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Prosciutto e Funghi</div><div class="dish-desc">Cooked ham, champignon, fior-di-latte.</div></div><div class="dish-price">13,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Prosciutto Crudo</div><div class="dish-desc">Parma ham 24 mesi added after the oven, fior-di-latte, basil.</div></div><div class="dish-price">15,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Prosciutto e Rucola <span class="badges"><span class="badge signature">signature</span></span></div><div class="dish-desc">Parma ham, rocket, Parmigiano shavings, cherry tomato.</div></div><div class="dish-price">16,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Capricciosa</div><div class="dish-desc">Cooked ham, mushroom, artichoke, olives, fior-di-latte.</div></div><div class="dish-price">14,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Quattro Stagioni</div><div class="dish-desc">Four quarters: ham, mushroom, artichoke, olives & anchovy.</div></div><div class="dish-price">14,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Funghi <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Mixed mushrooms, garlic, parsley, fior-di-latte.</div></div><div class="dish-price">13,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Funghi Porcini <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Porcini, garlic, thyme, fior-di-latte, truffle oil.</div></div><div class="dish-price">16,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Salsiccia e Friarielli</div><div class="dish-desc">Fennel sausage, friarielli, chilli, fior-di-latte — Naples-style.</div></div><div class="dish-price">15,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Tonno e Cipolla</div><div class="dish-desc">Tuna, red onion, capers, olives.</div></div><div class="dish-price">14,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Calabrese <span class="badges"><span class="badge hot">spicy</span></span></div><div class="dish-desc">'Nduja, salame piccante, fior-di-latte, chilli.</div></div><div class="dish-price">15,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Salame e Gorgonzola</div><div class="dish-desc">Milano salame, gorgonzola dolce, walnut, fior-di-latte.</div></div><div class="dish-price">14,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Speck e Brie</div><div class="dish-desc">Speck Alto Adige, brie, rocket, walnut.</div></div><div class="dish-price">15,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Bresaola e Rucola</div><div class="dish-desc">Aged bresaola, rocket, Grana Padano, lemon.</div></div><div class="dish-price">16,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Mortadella e Pistacchio</div><div class="dish-desc">Mortadella di Bologna, pistachio crumble, fior-di-latte, basil.</div></div><div class="dish-price">15,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Pollo Grigliato</div><div class="dish-desc">Grilled chicken, sweet pepper, red onion, fior-di-latte.</div></div><div class="dish-price">14,90</div></div>
+
+      <!-- BIANCHE -->
+      <div class="sub-head"><span class="label">Le Bianche</span><span class="it">no tomato</span></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Bianca Margherita <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Fior-di-latte, garlic, basil, olive oil. No tomato.</div></div><div class="dish-price">12,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Quattro Formaggi <span class="badges"><span class="badge veg">veg</span><span class="badge signature">signature</span></span></div><div class="dish-desc">Fior-di-latte, gorgonzola, Parmigiano, Taleggio, honey.</div></div><div class="dish-price">14,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Cinque Formaggi <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Four cheeses + fresh ricotta, black pepper, thyme.</div></div><div class="dish-price">15,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Boscaiola <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Mixed wild mushroom, sausage, fior-di-latte, rosemary.</div></div><div class="dish-price">15,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Patate e Rosmarino <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Thin potato slices, rosemary, garlic, fior-di-latte, sea salt.</div></div><div class="dish-price">13,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Tartufata <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Truffle cream, fior-di-latte, porcini, shaved Parmigiano.</div></div><div class="dish-price">18,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Speck e Funghi</div><div class="dish-desc">Speck, mushroom, fior-di-latte, chive.</div></div><div class="dish-price">14,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Salsiccia e Cime di Rapa</div><div class="dish-desc">Sausage, turnip tops, chilli, garlic, fior-di-latte.</div></div><div class="dish-price">15,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Ortolana Bianca <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Courgette, aubergine, sweet pepper, fior-di-latte, basil.</div></div><div class="dish-price">14,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Burrata e Pomodorini <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Fior-di-latte base, oven-roasted cherry tomato, burrata after the oven, basil.</div></div><div class="dish-price">16,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Crudo e Burrata <span class="badges"><span class="badge signature">signature</span></span></div><div class="dish-desc">Bianca base, Parma ham 24 mesi, whole burrata di Andria, lemon zest.</div></div><div class="dish-price">18,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Mortadella e Stracciatella</div><div class="dish-desc">Bianca base, mortadella, stracciatella, pistachio.</div></div><div class="dish-price">17,50</div></div>
+
+      <!-- MARE -->
+      <div class="sub-head"><span class="label">Dal Mare</span><span class="it">from the sea</span></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Frutti di Mare</div><div class="dish-desc">Mussels, clams, prawns, calamari, garlic, parsley. Without cheese.</div></div><div class="dish-price">17,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Gamberi e Zucchine</div><div class="dish-desc">Prawns, courgette, garlic, lemon, fior-di-latte.</div></div><div class="dish-price">17,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Tonno e Cipolla Rossa</div><div class="dish-desc">Yellowfin tuna, Tropea onion, capers, fior-di-latte.</div></div><div class="dish-price">15,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Salmone e Rucola</div><div class="dish-desc">Bianca base, cold-smoked salmon, rocket, lemon, mascarpone.</div></div><div class="dish-price">17,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Acciughe e Olive</div><div class="dish-desc">Anchovies, Taggiasca olives, oregano, fior-di-latte.</div></div><div class="dish-price">13,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Vongole e Limone</div><div class="dish-desc">Bianca base, clams, lemon, garlic, parsley.</div></div><div class="dish-price">17,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Calamari e Friarielli</div><div class="dish-desc">Grilled calamari, friarielli, chilli, garlic.</div></div><div class="dish-price">16,90</div></div>
+
+      <!-- DELLA CASA / SIGNATURES -->
+      <div class="sub-head"><span class="label">Le Speciali della Casa</span><span class="it">house signatures</span></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">La Grotta <span class="badges"><span class="badge signature">signature</span></span></div><div class="dish-desc">San Marzano, fior-di-latte, sausage, friarielli, smoked scamorza, chilli oil.</div></div><div class="dish-price">17,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Leipzig <span class="badges"><span class="badge new">new</span></span></div><div class="dish-desc">Bianca base, speck Alto Adige, mountain cheese, caramelised onion, thyme.</div></div><div class="dish-price">15,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Ratsfreischul</div><div class="dish-desc">San Marzano, mortadella, fior-di-latte, pistachio cream, stracciatella.</div></div><div class="dish-price">17,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Vesuvio <span class="badges"><span class="badge hot">spicy</span></span></div><div class="dish-desc">'Nduja, salame, chilli, smoked provola — for those who dare.</div></div><div class="dish-price">16,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Notturna</div><div class="dish-desc">Squid ink dough, fior-di-latte, prawn, lemon, basil oil.</div></div><div class="dish-price">18,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Tartufo Nero <span class="badges"><span class="badge signature">signature</span></span></div><div class="dish-desc">Truffle cream, fior-di-latte, fresh black truffle shaved at the table, Parmigiano.</div></div><div class="dish-price">26,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Wagyu e Rucola</div><div class="dish-desc">Bianca base, rare Wagyu carpaccio after the oven, rocket, Parmigiano, lemon.</div></div><div class="dish-price">24,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Della Nonna</div><div class="dish-desc">Marinara base, fior-di-latte, slow-braised ragù, fresh basil — like our grandmother's Sunday.</div></div><div class="dish-price">16,90</div></div>
+
+      <!-- VEGETARIANE -->
+      <div class="sub-head"><span class="label">Vegetariane</span><span class="it">senza carne</span></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Ortolana <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">San Marzano, grilled courgette, aubergine, sweet pepper, fior-di-latte, basil.</div></div><div class="dish-price">14,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Vegetariana del Mercato <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Whatever is best from the morning market — ask your waiter.</div></div><div class="dish-price">14,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Carciofi <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Roman artichoke, fior-di-latte, lemon, mint, Pecorino.</div></div><div class="dish-price">14,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Zucca e Salvia <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Pumpkin cream, fior-di-latte, crispy sage, hazelnut, ricotta salata. (Sep–Feb)</div></div><div class="dish-price">14,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Caprese <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">San Marzano, mozzarella di bufala after the oven, cherry tomato, basil.</div></div><div class="dish-price">15,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Pesto Genovese <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Bianca base, Genovese pesto after the oven, fior-di-latte, pine nut, cherry tomato.</div></div><div class="dish-price">14,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Spinaci e Ricotta <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Wilted spinach, ricotta, fior-di-latte, nutmeg.</div></div><div class="dish-price">14,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Rucola e Grana <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">San Marzano, fior-di-latte, rocket, Grana Padano shavings, cherry tomato.</div></div><div class="dish-price">14,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Asparagi e Burrata <span class="badges"><span class="badge veg">veg</span><span class="badge new">new</span></span></div><div class="dish-desc">Bianca base, green asparagus, burrata, lemon zest, pistachio. (Apr–Jun)</div></div><div class="dish-price">16,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Melanzane alla Parmigiana <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">San Marzano, fior-di-latte, aubergine, Parmigiano, basil.</div></div><div class="dish-price">14,90</div></div>
+
+      <!-- VEGAN -->
+      <div class="sub-head"><span class="label">Vegane</span><span class="it">100% vegetali</span></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Marinara Vegana <span class="badges"><span class="badge veg">vegan</span></span></div><div class="dish-desc">San Marzano, garlic, oregano, capers, olives, sun-dried tomato.</div></div><div class="dish-price">12,00</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Margherita Vegana <span class="badges"><span class="badge veg">vegan</span></span></div><div class="dish-desc">San Marzano, plant-based mozzarella, basil, olive oil.</div></div><div class="dish-price">13,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Ortolana Vegana <span class="badges"><span class="badge veg">vegan</span></span></div><div class="dish-desc">Mixed grilled vegetables, plant-based mozzarella, basil, balsamic glaze.</div></div><div class="dish-price">15,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Vegana al Tartufo <span class="badges"><span class="badge veg">vegan</span></span></div><div class="dish-desc">Truffle cream, plant-based mozzarella, mushroom, rocket.</div></div><div class="dish-price">17,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Vegana Piccante <span class="badges"><span class="badge veg">vegan</span><span class="badge hot">spicy</span></span></div><div class="dish-desc">San Marzano, plant-based salame, chilli, friarielli, plant mozzarella.</div></div><div class="dish-price">15,90</div></div>
+
+      <!-- CALZONI -->
+      <div class="sub-head"><span class="label">Calzoni & Pizza Folded</span><span class="it">pizze piegate</span></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Calzone Classico</div><div class="dish-desc">Folded — cooked ham, ricotta, fior-di-latte, San Marzano on top.</div></div><div class="dish-price">14,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Calzone alla Grotta <span class="badges"><span class="badge signature">signature</span></span></div><div class="dish-desc">Folded — Parma ham, ricotta, fior-di-latte, basil; pomodorini al forno on top.</div></div><div class="dish-price">15,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Calzone Diavolo <span class="badges"><span class="badge hot">spicy</span></span></div><div class="dish-desc">Folded — 'nduja, salame, ricotta, fior-di-latte, chilli honey.</div></div><div class="dish-price">15,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Calzone Vegetariano <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Folded — ricotta, spinach, mushroom, fior-di-latte; sugo on top.</div></div><div class="dish-price">14,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Calzone al Tartufo</div><div class="dish-desc">Folded — truffle cream, mushroom, fior-di-latte, prosciutto cotto.</div></div><div class="dish-price">17,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Pizza al Padellino</div><div class="dish-desc">Pan-baked Turin-style — crisp base, San Marzano, fior-di-latte, basil, olive oil.</div></div><div class="dish-price">13,90</div></div>
+
+      <!-- GOURMET -->
+      <div class="sub-head"><span class="label">Gourmet & Stagionale</span><span class="it">le pizze d'autore</span></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Pera, Gorgonzola e Noci <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Bianca base, gorgonzola dolce, caramelised pear, walnut, honey.</div></div><div class="dish-price">15,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Fico, Speck e Caprino</div><div class="dish-desc">Bianca base, speck, fresh fig, goat cheese, balsamic reduction. (Aug–Oct)</div></div><div class="dish-price">17,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Anatra all'Arancia</div><div class="dish-desc">Bianca base, slow-cooked duck, orange-rosemary glaze, fior-di-latte.</div></div><div class="dish-price">19,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Wagyu Tartare <span class="badges"><span class="badge new">new</span></span></div><div class="dish-desc">Bianca base, fior-di-latte; wagyu tartare, egg yolk and capers added after.</div></div><div class="dish-price">26,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Aragosta e Limone</div><div class="dish-desc">Bianca base, fior-di-latte, lobster, lemon, basil oil. (Pre-order, 24h.)</div></div><div class="dish-price">38,00</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Pizza dello Chef</div><div class="dish-desc">Whatever inspired him this morning. Ask your waiter.</div></div><div class="dish-price">market</div></div>
+
+      <!-- DOLCI PIZZA -->
+      <div class="sub-head"><span class="label">Pizze Dolci</span><span class="it">sweet pizza</span></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Nutella Classica <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Wood-fired base, Nutella, icing sugar.</div></div><div class="dish-price">10,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Nutella e Fragole <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Nutella, fresh strawberries, icing sugar, vanilla cream.</div></div><div class="dish-price">12,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Nutella e Banana <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Nutella, banana, almond crumble, icing sugar.</div></div><div class="dish-price">11,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Pistacchio e Stracciatella <span class="badges"><span class="badge veg">veg</span><span class="badge signature">signature</span></span></div><div class="dish-desc">Sicilian pistachio cream, stracciatella, pistachio crumble.</div></div><div class="dish-price">13,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Ricotta e Pere <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Sweet ricotta, caramelised pear, cinnamon, honey.</div></div><div class="dish-price">12,50</div></div>
+    </div>
+
+    <div class="legend">
+      <div class="item"><span class="badge veg">veg</span> Vegetarian / Vegan</div>
+      <div class="item"><span class="badge hot">spicy</span> Contains chilli</div>
+      <div class="item"><span class="badge new">new</span> New this season</div>
+      <div class="item"><span class="badge signature">signature</span> House signature</div>
+      <div class="item">Gluten-free base available · +3,50</div>
+      <div class="item">Lactose-free mozzarella · +1,50</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PASTA ============ -->
+<section class="menu-section" id="pasta">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="num">IV.</div>
+      <div class="title-col">
+        <h2>The <em>Pasta</em></h2>
+        <div class="name-it">Pasta Fatta in Casa</div>
+      </div>
+      <div class="count"><strong>18</strong>handmade pasta</div>
+    </div>
+    <p class="section-blurb reveal">Rolled, cut and shaped each morning. Dried pasta from Gragnano IGP for the southern classics; fresh egg pasta for the rest. Finished à la minute in copper pans.</p>
+
+    <div class="dishes">
+      <div class="sub-head"><span class="label">Pasta Lunga</span><span class="it">long pasta</span></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Spaghetti al Pomodoro <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Gragnano spaghetti, San Marzano, basil, Sicilian olive oil, Parmigiano.</div></div><div class="dish-price">13,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Spaghetti alla Carbonara</div><div class="dish-desc">Guanciale, egg yolk, Pecorino Romano, black pepper. No cream, ever.</div></div><div class="dish-price">15,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Spaghetti Cacio e Pepe</div><div class="dish-desc">Pecorino Romano, Sarawak black pepper, pasta water emulsion.</div></div><div class="dish-price">14,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Spaghetti alle Vongole</div><div class="dish-desc">Clams, garlic, parsley, chilli, white wine.</div></div><div class="dish-price">19,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Spaghetti all'Arrabbiata <span class="badges"><span class="badge veg">veg</span><span class="badge hot">spicy</span></span></div><div class="dish-desc">San Marzano, garlic, fresh chilli, parsley.</div></div><div class="dish-price">13,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Linguine ai Frutti di Mare</div><div class="dish-desc">Mussels, clams, prawns, calamari, cherry tomato, white wine.</div></div><div class="dish-price">22,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Tagliatelle al Ragù <span class="badges"><span class="badge signature">signature</span></span></div><div class="dish-desc">Hand-cut egg tagliatelle, 6-hour Bolognese ragù, Parmigiano 30 mesi.</div></div><div class="dish-price">17,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Tagliatelle al Tartufo</div><div class="dish-desc">Butter, Parmigiano, fresh black truffle shaved tableside.</div></div><div class="dish-price">26,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Pappardelle al Cinghiale <span class="badges"><span class="badge signature">signature</span></span></div><div class="dish-desc">Wide ribbons, slow-braised wild boar in Chianti, rosemary, juniper.</div></div><div class="dish-price">19,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Bucatini all'Amatriciana</div><div class="dish-desc">Guanciale, San Marzano, chilli, Pecorino Romano.</div></div><div class="dish-price">15,50</div></div>
+
+      <div class="sub-head"><span class="label">Pasta Ripiena</span><span class="it">stuffed pasta</span></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Ravioli di Ricotta e Spinaci <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Brown butter, fresh sage, toasted pine nut, Parmigiano.</div></div><div class="dish-price">16,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Ravioli di Zucca <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Mantua-style pumpkin ravioli, amaretti, Parmigiano, sage butter.</div></div><div class="dish-price">17,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Tortelloni di Manzo</div><div class="dish-desc">Braised beef cheek tortelloni, sugo d'arrosto, gremolata.</div></div><div class="dish-price">18,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Agnolotti del Plin</div><div class="dish-desc">Piedmontese pinched pasta, three-meat filling, butter and sage.</div></div><div class="dish-price">19,50</div></div>
+
+      <div class="sub-head"><span class="label">Gnocchi</span><span class="it">gnocchi di patate</span></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Gnocchi al Gorgonzola <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Gorgonzola dolce, walnut, thyme, Parmigiano.</div></div><div class="dish-price">15,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Gnocchi al Pomodoro <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">San Marzano, basil, fior-di-latte, Parmigiano.</div></div><div class="dish-price">14,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Gnocchi al Pesto <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Genovese basil pesto, green beans, potato, Parmigiano.</div></div><div class="dish-price">15,50</div></div>
+
+      <div class="sub-head"><span class="label">Al Forno</span><span class="it">baked pasta</span></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Lasagne della Nonna <span class="badges"><span class="badge signature">signature</span></span></div><div class="dish-desc">Hand-rolled sheets, 6-hour ragù, béchamel, Parmigiano. Baked in the wood oven.</div></div><div class="dish-price">17,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Cannelloni di Ricotta <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Ricotta and spinach cannelloni, San Marzano, béchamel, basil.</div></div><div class="dish-price">15,90</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RISOTTI ============ -->
+<section class="menu-section" id="risotti">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="num">V.</div>
+      <div class="title-col">
+        <h2>The <em>Risotti</em></h2>
+        <div class="name-it">Risotti — Carnaroli da Vercelli</div>
+      </div>
+      <div class="count"><strong>6</strong>risotti</div>
+    </div>
+    <p class="section-blurb reveal">Stirred to order, served all'onda — wave-like, never stiff. Minimum 22 minutes; we ask for your patience.</p>
+
+    <div class="dishes">
+      <div class="dish"><div class="dish-main"><div class="dish-name">Risotto allo Zafferano <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Milanese saffron, butter, Parmigiano 30 mesi, bone marrow optional.</div></div><div class="dish-price">17,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Risotto ai Funghi Porcini <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Porcini, thyme, Parmigiano, truffle oil.</div></div><div class="dish-price">19,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Risotto ai Frutti di Mare</div><div class="dish-desc">Clams, mussels, prawns, calamari, saffron, lemon zest.</div></div><div class="dish-price">22,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Risotto al Nero di Seppia</div><div class="dish-desc">Squid ink, calamari, white wine, chilli, parsley.</div></div><div class="dish-price">21,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Risotto al Tartufo Nero</div><div class="dish-desc">Butter, Parmigiano, black truffle shaved tableside.</div></div><div class="dish-price">28,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Risotto Radicchio e Speck</div><div class="dish-desc">Trevisano radicchio, speck Alto Adige, taleggio.</div></div><div class="dish-price">18,90</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECONDI ============ -->
+<section class="menu-section" id="secondi">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="num">VI.</div>
+      <div class="title-col">
+        <h2>From the <em>Fire</em> & <em>Sea</em></h2>
+        <div class="name-it">Secondi di Carne e di Pesce</div>
+      </div>
+      <div class="count"><strong>14</strong>main courses</div>
+    </div>
+    <p class="section-blurb reveal">Meats charred over olive wood, fish from the morning's Hamburg auction. Served with one side; choose another from below.</p>
+
+    <div class="dishes">
+      <div class="sub-head"><span class="label">Di Carne</span><span class="it">from the grill</span></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Tagliata di Manzo</div><div class="dish-desc">Saxon dry-aged rib-eye, rocket, Parmigiano, Modena balsamic.</div></div><div class="dish-price">32,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Bistecca alla Fiorentina <span class="badges"><span class="badge signature">signature</span></span></div><div class="dish-desc">Chianina T-bone, 1.2 kg, rosemary, Tuscan olive oil. For two, 24h notice.</div></div><div class="dish-price">98,00</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Saltimbocca alla Romana</div><div class="dish-desc">Veal escalope, Parma ham, sage, white wine and butter sauce.</div></div><div class="dish-price">24,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Ossobuco alla Milanese</div><div class="dish-desc">Slow-braised veal shank, saffron risotto, gremolata.</div></div><div class="dish-price">28,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Pollo alla Diavola <span class="badges"><span class="badge hot">spicy</span></span></div><div class="dish-desc">Half corn-fed chicken under a brick, chilli, lemon, rosemary.</div></div><div class="dish-price">22,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Costolette d'Agnello</div><div class="dish-desc">Olive-wood grilled lamb rack, salsa verde, roasted potato.</div></div><div class="dish-price">29,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Scaloppine al Limone</div><div class="dish-desc">Veal scaloppine, lemon, white wine, butter, capers.</div></div><div class="dish-price">23,90</div></div>
+
+      <div class="sub-head"><span class="label">Di Pesce</span><span class="it">from the sea</span></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Branzino in Crosta di Sale</div><div class="dish-desc">Whole sea bass baked in sea-salt crust, lemon, olive oil. For two.</div></div><div class="dish-price">58,00</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Orata al Forno</div><div class="dish-desc">Whole gilthead bream, oven-roasted, cherry tomato, olives, capers.</div></div><div class="dish-price">28,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Salmone alla Griglia</div><div class="dish-desc">Grilled salmon fillet, salsa verde, lemon, fennel salad.</div></div><div class="dish-price">24,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Tonno alla Siciliana</div><div class="dish-desc">Seared yellowfin, caponata, mint, almonds.</div></div><div class="dish-price">29,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Gamberoni alla Griglia</div><div class="dish-desc">Six grilled tiger prawns, garlic, chilli, parsley, lemon.</div></div><div class="dish-price">27,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Calamari Ripieni</div><div class="dish-desc">Whole calamari stuffed with breadcrumbs, capers and herbs, tomato sugo.</div></div><div class="dish-price">23,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Frittura di Paranza</div><div class="dish-desc">Whatever the morning boat brought, lightly floured and fried, lemon.</div></div><div class="dish-price">22,90</div></div>
+
+      <div class="sub-head"><span class="label">Contorni</span><span class="it">sides · 5,90 each</span></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Patate al Forno · Friarielli · Spinaci al Limone · Insalata Mista · Verdure Grigliate · Pomodorini al Forno <span class="badges"><span class="badge veg">veg</span></span></div></div><div class="dish-price">5,90</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BAMBINI ============ -->
+<section class="menu-section" id="bambini">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="num">VII.</div>
+      <div class="title-col">
+        <h2>For the <em>Little Ones</em></h2>
+        <div class="name-it">Menù dei Bambini</div>
+      </div>
+      <div class="count"><strong>6</strong>under 12s</div>
+    </div>
+
+    <div class="dishes">
+      <div class="dish"><div class="dish-main"><div class="dish-name">Pizza Margherita Bambini</div><div class="dish-desc">22 cm Margherita, made with extra love.</div></div><div class="dish-price">7,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Pizza Prosciutto Bambini</div><div class="dish-desc">22 cm — fior-di-latte, cooked ham.</div></div><div class="dish-price">8,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Spaghetti al Pomodoro <span class="badges"><span class="badge veg">veg</span></span></div><div class="dish-desc">Small portion, San Marzano, Parmigiano.</div></div><div class="dish-price">7,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Pasta al Ragù</div><div class="dish-desc">Small portion of tagliatelle Bolognese.</div></div><div class="dish-price">8,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Cotoletta Bambini</div><div class="dish-desc">Small veal Milanese with French fries.</div></div><div class="dish-price">11,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Coppa di Gelato</div><div class="dish-desc">Two scoops of house-made gelato, your choice.</div></div><div class="dish-price">5,50</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DOLCI ============ -->
+<section class="menu-section" id="dolci">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="num">VIII.</div>
+      <div class="title-col">
+        <h2>To <em>Finish</em></h2>
+        <div class="name-it">Dolci della Casa</div>
+      </div>
+      <div class="count"><strong>12</strong>desserts & gelato</div>
+    </div>
+    <p class="section-blurb reveal">Everything sweet leaves our pastry kitchen each morning. The gelato is churned in-house with Sicilian almonds and Bronte pistachio.</p>
+
+    <div class="dishes">
+      <div class="dish"><div class="dish-main"><div class="dish-name">Tiramisù della Casa <span class="badges"><span class="badge signature">signature</span></span></div><div class="dish-desc">Mascarpone, Sardinian savoiardi, espresso from the old La Marzocco, Marsala, cocoa.</div></div><div class="dish-price">8,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Panna Cotta ai Frutti di Bosco</div><div class="dish-desc">Vanilla panna cotta, mixed forest berry compote, mint.</div></div><div class="dish-price">7,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Cannoli Siciliani</div><div class="dish-desc">Three filled to order — sweet ricotta, candied orange, pistachio, dark chocolate.</div></div><div class="dish-price">8,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Sfogliatella Napoletana</div><div class="dish-desc">Crisp lobster-tail pastry, semolina-ricotta, orange blossom.</div></div><div class="dish-price">7,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Cassata Siciliana</div><div class="dish-desc">Sweet ricotta, sponge, candied fruit, pistachio, marzipan.</div></div><div class="dish-price">9,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Torta della Nonna</div><div class="dish-desc">Shortcrust, lemon-vanilla custard, pine nut, icing sugar.</div></div><div class="dish-price">8,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Affogato al Caffè</div><div class="dish-desc">Two scoops fior-di-latte gelato drowned in an espresso shot.</div></div><div class="dish-price">7,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Semifreddo al Pistacchio</div><div class="dish-desc">Bronte pistachio semifreddo, raspberry, crumble.</div></div><div class="dish-price">9,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Torta al Cioccolato Fondente</div><div class="dish-desc">Warm dark-chocolate cake, liquid centre, vanilla gelato, sea salt.</div></div><div class="dish-price">9,90</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Selezione di Formaggi</div><div class="dish-desc">Five Italian cheeses, honey, walnut, mostarda. Ask for tonight's selection.</div></div><div class="dish-price">17,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Coppa Gelato — 3 scoops</div><div class="dish-desc">From: fior-di-latte, pistachio, Bronte hazelnut, dark chocolate, lemon sorbet, raspberry, stracciatella, salted caramel, coffee.</div></div><div class="dish-price">7,50</div></div>
+      <div class="dish"><div class="dish-main"><div class="dish-name">Frutta di Stagione</div><div class="dish-desc">Whatever is best from the morning market.</div></div><div class="dish-price">6,90</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VINI & DRINKS ============ -->
+<section class="menu-section" id="vini">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="num">IX.</div>
+      <div class="title-col">
+        <h2>To <em>Drink</em></h2>
+        <div class="name-it">Vini, Cocktail, Caffè</div>
+      </div>
+      <div class="count"><strong>180+</strong>references</div>
+    </div>
+    <p class="section-blurb reveal">The deepest Italian cellar in Saxony — 180 wines from Piemonte to Sicilia, six on tap, twenty-eight by the glass. Our sommelier Renzo will guide you happily; just ask.</p>
+
+    <div class="split">
+      <div class="split-col">
+        <h4>Aperitivi</h4>
+        <div class="drink-row"><span class="name">Aperol Spritz</span><span class="price">8,50</span></div>
+        <div class="drink-row"><span class="name">Hugo <span class="it">elderflower, prosecco, mint</span></span><span class="price">8,50</span></div>
+        <div class="drink-row"><span class="name">Negroni <span class="it">Campari, Cinzano 1757, gin</span></span><span class="price">11,00</span></div>
+        <div class="drink-row"><span class="name">Negroni Sbagliato</span><span class="price">10,50</span></div>
+        <div class="drink-row"><span class="name">Americano</span><span class="price">9,50</span></div>
+        <div class="drink-row"><span class="name">Bellini <span class="it">white peach, prosecco</span></span><span class="price">9,50</span></div>
+        <div class="drink-row"><span class="name">Campari Soda</span><span class="price">7,50</span></div>
+
+        <h4 style="margin-top: 48px;">Vino al Calice</h4>
+        <div class="drink-row"><span class="name">Prosecco di Valdobbiadene DOCG <span class="it">125 ml</span></span><span class="price">7,50</span></div>
+        <div class="drink-row"><span class="name">Franciacorta Brut <span class="it">125 ml</span></span><span class="price">11,00</span></div>
+        <div class="drink-row"><span class="name">Pinot Grigio · Friuli <span class="it">150 ml</span></span><span class="price">7,90</span></div>
+        <div class="drink-row"><span class="name">Vermentino · Sardegna</span><span class="price">8,50</span></div>
+        <div class="drink-row"><span class="name">Greco di Tufo · Campania</span><span class="price">9,50</span></div>
+        <div class="drink-row"><span class="name">Chianti Classico DOCG</span><span class="price">9,50</span></div>
+        <div class="drink-row"><span class="name">Nero d'Avola · Sicilia</span><span class="price">8,50</span></div>
+        <div class="drink-row"><span class="name">Barbera d'Alba · Piemonte</span><span class="price">10,50</span></div>
+        <div class="drink-row"><span class="name">Brunello di Montalcino DOCG</span><span class="price">15,50</span></div>
+      </div>
+      <div class="split-col">
+        <h4>Birre</h4>
+        <div class="drink-row"><span class="name">Peroni Nastro Azzurro <span class="it">0,33 l</span></span><span class="price">4,90</span></div>
+        <div class="drink-row"><span class="name">Moretti La Rossa <span class="it">0,33 l</span></span><span class="price">5,50</span></div>
+        <div class="drink-row"><span class="name">Birra del Borgo Re Ale <span class="it">0,33 l</span></span><span class="price">7,50</span></div>
+        <div class="drink-row"><span class="name">Bayerischer Bahnhof Gose <span class="it">local, 0,33 l</span></span><span class="price">5,50</span></div>
+        <div class="drink-row"><span class="name">Menabrea 1846 Bionda</span><span class="price">6,50</span></div>
+
+        <h4 style="margin-top: 48px;">Caffè & Digestivi</h4>
+        <div class="drink-row"><span class="name">Espresso</span><span class="price">2,80</span></div>
+        <div class="drink-row"><span class="name">Doppio Espresso</span><span class="price">4,50</span></div>
+        <div class="drink-row"><span class="name">Cappuccino <span class="it">after 11:00 only</span></span><span class="price">4,20</span></div>
+        <div class="drink-row"><span class="name">Espresso Martini</span><span class="price">11,50</span></div>
+        <div class="drink-row"><span class="name">Limoncello di Sorrento</span><span class="price">5,50</span></div>
+        <div class="drink-row"><span class="name">Grappa di Barolo · Berta</span><span class="price">9,50</span></div>
+        <div class="drink-row"><span class="name">Amaro Montenegro</span><span class="price">6,50</span></div>
+        <div class="drink-row"><span class="name">Amaro Averna</span><span class="price">6,50</span></div>
+        <div class="drink-row"><span class="name">Sambuca Molinari</span><span class="price">5,50</span></div>
+        <div class="drink-row"><span class="name">Fernet-Branca</span><span class="price">5,90</span></div>
+
+        <h4 style="margin-top: 48px;">Acque & Analcoliche</h4>
+        <div class="drink-row"><span class="name">Acqua San Pellegrino <span class="it">0,75 l</span></span><span class="price">5,50</span></div>
+        <div class="drink-row"><span class="name">Acqua Acqua Panna <span class="it">0,75 l</span></span><span class="price">5,50</span></div>
+        <div class="drink-row"><span class="name">Chinotto · Lurisia</span><span class="price">4,90</span></div>
+        <div class="drink-row"><span class="name">Aranciata Rossa · Lurisia</span><span class="price">4,90</span></div>
+        <div class="drink-row"><span class="name">Limonata di Sicilia</span><span class="price">4,90</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER NOTE ============ -->
+<section class="footer-note">
+  <div class="container-narrow">
+    <div class="ornament">Buon Appetito</div>
+    <h3>Hungry <em>yet?</em></h3>
+    <p>Tables for two through fourteen. Friday and Saturday fill three weeks out — book early, eat well, stay late.</p>
+    <div class="ctas">
+      <a href="index.html#reserve" class="btn btn-primary">Reserve a Table <span class="arrow">→</span></a>
+      <a href="index.html" class="btn btn-ghost">Back to Home</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Sticky tab — highlight on scroll
+  const tabs = [...document.querySelectorAll('.tab')];
+  const sections = tabs.map(t => document.querySelector(t.getAttribute('href'))).filter(Boolean);
+  function syncTabs() {
+    const y = window.scrollY + 200;
+    let active = sections[0];
+    for (const s of sections) {
+      if (s.offsetTop <= y) active = s;
+    }
+    tabs.forEach(t => t.classList.toggle('active', t.getAttribute('href') === '#' + active.id));
+  }
+  window.addEventListener('scroll', syncTabs, { passive: true });
+  syncTabs();
+
+  // Reveal-on-scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>La Grotta — Wood-Fired Pizza & Italian Ristorante · Leipzig</title>
+<meta name="description" content="La Grotta Leipzig — over 100 wood-fired pizzas, handmade pasta, fresh fish and house-made gelato, served inside a romantic stone grotto in the heart of Leipzig." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" />
+<style>
+  /* =================================================================
+     LA GROTTA — design tokens
+     Terracotta + olive + cream + charcoal, on Cormorant + DM Sans
+  ================================================================= */
+  :root {
+    --terracotta: #C75B39;
+    --terracotta-deep: #A4421F;
+    --olive: #4A5A3C;
+    --olive-deep: #2F3A26;
+    --cream: #F4ECDE;
+    --cream-warm: #EDE0CC;
+    --cream-soft: #FAF5EB;
+    --charcoal: #3B3029;
+    --charcoal-deep: #1F1813;
+    --charcoal-soft: #5A4A40;
+    --gold: #C9A86C;
+    --gold-soft: #DCBD86;
+    --ink: #2A201A;
+    --line: rgba(59, 48, 41, 0.16);
+
+    --serif: 'Cormorant Garamond', 'Times New Roman', serif;
+    --sans: 'DM Sans', 'Helvetica Neue', system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink);
+    background: var(--cream);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; text-decoration: none; }
+
+  .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+  .container-narrow { max-width: 880px; margin: 0 auto; padding: 0 32px; }
+
+  .eyebrow {
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    font-weight: 500;
+    color: var(--terracotta);
+  }
+  .display { font-family: var(--serif); font-weight: 500; line-height: 1.02; letter-spacing: -0.01em; }
+  .display em { font-style: italic; font-weight: 400; }
+
+  .ornament {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+  }
+  .ornament::before, .ornament::after {
+    content: "";
+    width: 36px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.45;
+  }
+
+  /* ---------------- Buttons ---------------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 30px;
+    border-radius: 999px;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: transform 0.2s, background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+  }
+  .btn-primary { background: var(--terracotta); color: var(--cream-soft); box-shadow: 0 12px 28px -12px rgba(199, 91, 57, 0.6); }
+  .btn-primary:hover { background: var(--terracotta-deep); transform: translateY(-2px); }
+  .btn-ghost { color: var(--cream); border-color: rgba(245, 237, 224, 0.45); }
+  .btn-ghost:hover { background: rgba(245, 237, 224, 0.1); border-color: var(--cream); }
+  .btn-dark { background: var(--charcoal); color: var(--cream-soft); }
+  .btn-dark:hover { background: var(--charcoal-deep); transform: translateY(-2px); }
+  .btn-outline { color: var(--charcoal); border-color: var(--charcoal); }
+  .btn-outline:hover { background: var(--charcoal); color: var(--cream-soft); }
+  .btn .arrow { transition: transform 0.25s; }
+  .btn:hover .arrow { transform: translateX(4px); }
+
+  /* =================================================================
+     NAV
+  ================================================================= */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 22px 0;
+    transition: background 0.35s, padding 0.3s, border-color 0.35s;
+    border-bottom: 1px solid transparent;
+  }
+  .nav.scrolled {
+    background: rgba(31, 24, 19, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    padding: 12px 0;
+    border-bottom-color: rgba(201, 168, 108, 0.18);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+  .nav-logo { display: flex; align-items: baseline; gap: 12px; color: var(--cream); }
+  .nav-logo .mark {
+    font-family: var(--serif); font-style: italic; font-weight: 500;
+    font-size: 30px; line-height: 1;
+  }
+  .nav-logo .sub {
+    font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase;
+    font-weight: 500; opacity: 0.72;
+  }
+  .nav-links { display: flex; align-items: center; gap: 36px; }
+  .nav-links a {
+    color: var(--cream);
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    font-weight: 500; opacity: 0.82;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--gold-soft); }
+  .nav-cta {
+    background: var(--terracotta);
+    color: var(--cream-soft) !important;
+    padding: 11px 22px;
+    border-radius: 999px;
+    opacity: 1 !important;
+    letter-spacing: 0.16em !important;
+  }
+  .nav-cta:hover { background: var(--terracotta-deep); color: var(--cream-soft) !important; }
+  @media (max-width: 880px) { .nav-links a:not(.nav-cta) { display: none; } }
+
+  /* =================================================================
+     HERO
+  ================================================================= */
+  .hero {
+    position: relative;
+    min-height: 100vh; min-height: 100svh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    background: var(--charcoal-deep);
+    color: var(--cream);
+    text-align: center;
+    padding: 140px 0 100px;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url("assets/photos/pizza-overhead.png") center 38%/cover no-repeat;
+    transform: scale(1.06);
+  }
+  .hero-bg::after {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 45%, rgba(20,12,8,0.35) 0%, rgba(15,8,4,0.7) 60%, rgba(10,6,3,0.92) 100%),
+      linear-gradient(180deg, rgba(15,8,4,0.45) 0%, rgba(15,8,4,0.2) 30%, rgba(10,6,3,0.85) 100%);
+  }
+  .hero-inner { position: relative; z-index: 2; padding: 0 32px; max-width: 1100px; }
+  .hero-eyebrow {
+    color: var(--gold-soft);
+    margin-bottom: 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+  }
+  .hero-eyebrow .bullet {
+    width: 4px; height: 4px; background: var(--gold-soft); border-radius: 50%;
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(80px, 14vw, 240px);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+    color: #fcf5e8;
+    text-shadow: 0 4px 50px rgba(0,0,0,0.55);
+  }
+  .hero-tagline {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.5;
+    color: rgba(252, 245, 232, 0.94);
+    margin: 0 auto 32px;
+    max-width: 640px;
+  }
+  .hero-tagline em { font-style: italic; color: var(--gold-soft); }
+  .hero-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    padding: 11px 24px;
+    background: rgba(15, 8, 4, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(217, 188, 133, 0.32);
+    border-radius: 999px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--cream);
+    margin-bottom: 44px;
+  }
+  .hero-meta .stars { color: var(--gold-soft); letter-spacing: 0.08em; font-size: 13px; }
+  .hero-meta .dot { width: 3px; height: 3px; background: var(--gold-soft); border-radius: 50%; opacity: 0.65; }
+  .hero-meta strong { font-weight: 600; }
+
+  .hero-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  .hero-scroll {
+    position: absolute; bottom: 32px; left: 50%;
+    transform: translateX(-50%);
+    color: rgba(245, 237, 224, 0.6);
+    font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase;
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+  }
+  .hero-scroll::after {
+    content: ""; width: 1px; height: 32px;
+    background: linear-gradient(to bottom, var(--gold-soft), transparent);
+    animation: pulseDown 2.4s ease-in-out infinite;
+  }
+  @keyframes pulseDown {
+    0%, 100% { transform: scaleY(0.6); transform-origin: top; opacity: 0.4; }
+    50% { transform: scaleY(1); opacity: 1; }
+  }
+
+  /* =================================================================
+     INTRO RIBBON — three pillars
+  ================================================================= */
+  .ribbon {
+    background: var(--cream);
+    padding: 120px 0 100px;
+    border-bottom: 1px solid var(--line);
+  }
+  .ribbon-head { text-align: center; max-width: 760px; margin: 0 auto 80px; }
+  .ribbon-head .ornament { margin-bottom: 28px; }
+  .ribbon-head .title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(40px, 5.5vw, 64px);
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    color: var(--charcoal);
+    margin-bottom: 22px;
+  }
+  .ribbon-head .title em { font-style: italic; color: var(--terracotta); font-weight: 400; }
+  .ribbon-head .lede {
+    font-family: var(--serif);
+    font-size: 21px;
+    line-height: 1.55;
+    color: var(--charcoal-soft);
+  }
+
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; }
+  @media (max-width: 880px) { .pillars { grid-template-columns: 1fr; gap: 48px; max-width: 460px; margin: 0 auto; } }
+  .pillar { text-align: center; }
+  .pillar-num {
+    font-family: var(--serif); font-style: italic;
+    font-size: 28px; color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .pillar-title {
+    font-family: var(--serif); font-weight: 500;
+    font-size: 30px; line-height: 1.1;
+    color: var(--charcoal);
+    margin-bottom: 14px;
+  }
+  .pillar-title em { font-style: italic; color: var(--terracotta); font-weight: 400; }
+  .pillar-body {
+    font-size: 15px;
+    color: var(--charcoal-soft);
+    line-height: 1.7;
+  }
+
+  /* =================================================================
+     THE OVEN — moody dark feature
+  ================================================================= */
+  .oven {
+    background: var(--charcoal-deep);
+    color: var(--cream);
+    padding: 140px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .oven::before {
+    content: "";
+    position: absolute;
+    top: -10%; right: -8%;
+    width: 60vw; height: 60vw; max-width: 700px; max-height: 700px;
+    background: radial-gradient(circle, rgba(199, 91, 57, 0.22) 0%, rgba(199, 91, 57, 0) 65%);
+    pointer-events: none;
+  }
+  .oven-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 96px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 980px) { .oven-grid { grid-template-columns: 1fr; gap: 64px; } }
+  .oven-img {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    box-shadow: 0 40px 80px -30px rgba(0,0,0,0.6);
+  }
+  .oven-img img { width: 100%; height: 100%; object-fit: cover; }
+  .oven-img::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(15,8,4,0) 60%, rgba(15,8,4,0.5) 100%);
+  }
+  .oven-badge {
+    position: absolute;
+    bottom: 28px; left: 28px;
+    padding: 10px 18px;
+    background: rgba(15, 8, 4, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(217, 188, 133, 0.3);
+    border-radius: 999px;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+  }
+  .oven-content .eyebrow { color: var(--gold-soft); margin-bottom: 28px; }
+  .oven-content h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(44px, 5.5vw, 72px);
+    line-height: 0.98;
+    letter-spacing: -0.015em;
+    margin-bottom: 32px;
+  }
+  .oven-content h2 em { font-style: italic; color: var(--gold-soft); font-weight: 400; }
+  .oven-content p {
+    font-family: var(--serif);
+    font-size: 20px;
+    line-height: 1.6;
+    color: rgba(245, 237, 224, 0.82);
+    margin-bottom: 20px;
+  }
+  .oven-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(201, 168, 108, 0.22);
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 1;
+    color: var(--gold-soft);
+    margin-bottom: 8px;
+  }
+  .stat-num em { font-style: italic; font-weight: 400; }
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(245, 237, 224, 0.6);
+  }
+
+  /* =================================================================
+     PIZZA SHOWCASE
+  ================================================================= */
+  .showcase { background: var(--cream-soft); padding: 140px 0; }
+  .showcase-head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 48px;
+    align-items: end;
+    margin-bottom: 72px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid var(--line);
+  }
+  @media (max-width: 880px) {
+    .showcase-head { grid-template-columns: 1fr; gap: 28px; align-items: start; }
+  }
+  .showcase-head .titles { max-width: 700px; }
+  .showcase-head .eyebrow { margin-bottom: 18px; }
+  .showcase-head h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(40px, 5.5vw, 68px);
+    line-height: 1;
+    letter-spacing: -0.015em;
+    color: var(--charcoal);
+  }
+  .showcase-head h2 em { font-style: italic; color: var(--terracotta); font-weight: 400; }
+  .showcase-head .meta {
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    color: var(--charcoal-soft);
+    text-align: right;
+  }
+  @media (max-width: 880px) { .showcase-head .meta { text-align: left; } }
+  .showcase-head .meta strong {
+    display: block;
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 38px;
+    color: var(--terracotta);
+    line-height: 1;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+
+  .pizza-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 24px;
+  }
+  @media (max-width: 980px) {
+    .pizza-grid { grid-template-columns: 1fr 1fr; }
+    .pizza-grid > :nth-child(1) { grid-column: span 2; }
+  }
+  @media (max-width: 600px) {
+    .pizza-grid { grid-template-columns: 1fr; }
+    .pizza-grid > :nth-child(1) { grid-column: auto; }
+  }
+  .pizza-card {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--charcoal-deep);
+    aspect-ratio: 4 / 5;
+    color: var(--cream);
+    cursor: pointer;
+  }
+  .pizza-card.wide { aspect-ratio: 1 / 1; grid-row: span 2; }
+  @media (max-width: 980px) { .pizza-card.wide { grid-row: auto; aspect-ratio: 4 / 5; } }
+  .pizza-card img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.9s ease;
+  }
+  .pizza-card:hover img { transform: scale(1.05); }
+  .pizza-card::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(15,8,4,0.85) 100%);
+  }
+  .pizza-info {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 28px 28px 26px;
+    z-index: 2;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .pizza-info .name {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 28px;
+    line-height: 1.05;
+    margin-bottom: 4px;
+  }
+  .pizza-card.wide .pizza-info .name { font-size: 38px; }
+  .pizza-info .desc {
+    font-size: 12px;
+    color: rgba(245, 237, 224, 0.78);
+    line-height: 1.45;
+    max-width: 320px;
+  }
+  .pizza-info .price {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--gold-soft);
+    flex-shrink: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .showcase-foot {
+    margin-top: 64px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+  }
+  .showcase-foot .note {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--charcoal-soft);
+  }
+
+  /* =================================================================
+     LA GROTTA — the place itself
+  ================================================================= */
+  .place {
+    background: var(--cream);
+    padding: 140px 0;
+  }
+  .place-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  @media (max-width: 980px) { .place-grid { grid-template-columns: 1fr; gap: 56px; } }
+  .place-img {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: var(--shadow-card, 0 24px 60px -28px rgba(37, 29, 24, 0.5));
+  }
+  .place-img img { width: 100%; height: 100%; object-fit: cover; }
+  .place-content .eyebrow { margin-bottom: 24px; }
+  .place-content h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(44px, 5.5vw, 72px);
+    line-height: 0.98;
+    letter-spacing: -0.015em;
+    color: var(--charcoal);
+    margin-bottom: 32px;
+  }
+  .place-content h2 em { font-style: italic; color: var(--terracotta); font-weight: 400; }
+  .place-content p {
+    font-family: var(--serif);
+    font-size: 20px;
+    line-height: 1.6;
+    color: var(--charcoal-soft);
+    margin-bottom: 18px;
+  }
+  .place-features {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .place-feature {
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+  }
+  .place-feature .label {
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .place-feature .value {
+    font-family: var(--serif);
+    font-size: 19px;
+    color: var(--charcoal);
+    line-height: 1.3;
+  }
+
+  /* =================================================================
+     PASTA / DESSERTS DUO
+  ================================================================= */
+  .duo { background: var(--cream-warm); padding: 120px 0; }
+  .duo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  @media (max-width: 880px) { .duo-grid { grid-template-columns: 1fr; } }
+  .duo-card {
+    position: relative;
+    aspect-ratio: 5 / 6;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--charcoal);
+    color: var(--cream);
+  }
+  .duo-card img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.9s ease;
+  }
+  .duo-card:hover img { transform: scale(1.04); }
+  .duo-card::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.1) 40%, rgba(15,8,4,0.85) 100%);
+  }
+  .duo-content {
+    position: absolute; inset: 0;
+    z-index: 2;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .duo-content .top { display: flex; justify-content: space-between; align-items: start; gap: 16px; }
+  .duo-content .badge {
+    padding: 8px 16px;
+    background: rgba(15, 8, 4, 0.55);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(217, 188, 133, 0.3);
+    border-radius: 999px;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+  }
+  .duo-content .num {
+    font-family: var(--serif); font-style: italic;
+    font-size: 20px; color: rgba(252, 245, 232, 0.55);
+  }
+  .duo-content h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(36px, 4vw, 52px);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+  }
+  .duo-content h3 em { font-style: italic; color: var(--gold-soft); font-weight: 400; }
+  .duo-content p {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: rgba(252, 245, 232, 0.82);
+    max-width: 380px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+  .duo-content .duo-link {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--cream);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    align-self: flex-start;
+    transition: gap 0.2s;
+  }
+  .duo-content .duo-link:hover { gap: 16px; color: var(--gold-soft); }
+
+  /* =================================================================
+     REVIEWS
+  ================================================================= */
+  .reviews { background: var(--cream); padding: 140px 0; }
+  .reviews-head { text-align: center; margin-bottom: 72px; }
+  .reviews-head .ornament { margin-bottom: 28px; }
+  .reviews-head h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(40px, 5vw, 60px);
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    color: var(--charcoal);
+    margin-bottom: 24px;
+  }
+  .reviews-head h2 em { font-style: italic; color: var(--terracotta); font-weight: 400; }
+  .reviews-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 13px;
+    color: var(--charcoal-soft);
+    letter-spacing: 0.08em;
+  }
+  .reviews-rating .stars { color: var(--gold); font-size: 16px; letter-spacing: 0.1em; }
+  .reviews-rating strong { font-family: var(--serif); font-size: 22px; color: var(--charcoal); font-weight: 500; }
+
+  .review-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  @media (max-width: 980px) { .review-grid { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; } }
+  .review {
+    background: var(--cream-soft);
+    border: 1px solid var(--line);
+    padding: 40px 36px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .review .stars { color: var(--gold); letter-spacing: 0.1em; font-size: 14px; }
+  .review .quote {
+    font-family: var(--serif);
+    font-size: 21px;
+    line-height: 1.5;
+    color: var(--charcoal);
+    flex: 1;
+  }
+  .review .quote::before { content: "“"; color: var(--terracotta); font-size: 36px; line-height: 0; vertical-align: -8px; margin-right: 4px; }
+  .review .quote::after { content: "”"; color: var(--terracotta); font-size: 36px; line-height: 0; vertical-align: -16px; margin-left: 2px; }
+  .review .by {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+  .review .avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    color: var(--cream-soft);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-weight: 600; font-size: 17px;
+    flex-shrink: 0;
+  }
+  .review .meta-by { font-size: 14px; line-height: 1.3; }
+  .review .meta-by .name { color: var(--charcoal); font-weight: 600; }
+  .review .meta-by .when { color: var(--charcoal-soft); font-size: 12px; }
+
+  /* =================================================================
+     RESERVE / CTA STRIP
+  ================================================================= */
+  .reserve {
+    background: var(--terracotta);
+    color: var(--cream-soft);
+    padding: 120px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .reserve::before {
+    content: "";
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 140%; height: 140%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(252, 245, 232, 0.12) 0%, rgba(252, 245, 232, 0) 55%);
+    pointer-events: none;
+  }
+  .reserve-inner { position: relative; z-index: 1; }
+  .reserve .ornament { color: var(--gold-soft); margin-bottom: 28px; }
+  .reserve h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(48px, 6vw, 80px);
+    line-height: 0.98;
+    letter-spacing: -0.015em;
+    margin-bottom: 24px;
+  }
+  .reserve h2 em { font-style: italic; color: var(--gold-soft); font-weight: 400; }
+  .reserve p {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: rgba(252, 245, 232, 0.88);
+    max-width: 600px;
+    margin: 0 auto 44px;
+    line-height: 1.5;
+  }
+  .reserve-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .reserve .btn-light {
+    background: var(--cream-soft);
+    color: var(--charcoal);
+  }
+  .reserve .btn-light:hover { background: var(--cream); transform: translateY(-2px); }
+  .reserve .btn-outline-light {
+    color: var(--cream-soft);
+    border-color: rgba(252, 245, 232, 0.6);
+  }
+  .reserve .btn-outline-light:hover { background: rgba(252, 245, 232, 0.12); border-color: var(--cream-soft); }
+
+  /* ---- Reservation form ---- */
+  .reserve-form {
+    margin: 48px auto 32px;
+    max-width: 720px;
+    background: rgba(15, 8, 4, 0.22);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(252, 245, 232, 0.22);
+    border-radius: 4px;
+    padding: 32px 32px 28px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px 22px;
+    text-align: left;
+  }
+  @media (max-width: 720px) { .reserve-form { grid-template-columns: 1fr 1fr; } .reserve-form .field-wide { grid-column: span 2; } }
+  @media (max-width: 460px) { .reserve-form { grid-template-columns: 1fr; } .reserve-form .field-wide { grid-column: auto; } }
+  .reserve-form .field { display: flex; flex-direction: column; gap: 8px; }
+  .reserve-form label {
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    font-weight: 600;
+  }
+  .reserve-form input,
+  .reserve-form select {
+    font-family: var(--serif);
+    font-size: 19px;
+    padding: 12px 14px;
+    background: rgba(252, 245, 232, 0.08);
+    border: 1px solid rgba(252, 245, 232, 0.32);
+    border-radius: 4px;
+    color: var(--cream-soft);
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .reserve-form input::placeholder { color: rgba(252, 245, 232, 0.5); }
+  .reserve-form input:focus,
+  .reserve-form select:focus {
+    outline: none;
+    border-color: var(--gold-soft);
+    background: rgba(252, 245, 232, 0.14);
+  }
+  .reserve-form select option { background: var(--charcoal-deep); color: var(--cream-soft); }
+  .reserve-form input[type="date"] { color-scheme: dark; }
+  .reserve-form .submit-row {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 8px;
+    padding-top: 22px;
+    border-top: 1px dashed rgba(252, 245, 232, 0.22);
+  }
+  .reserve-form .whatsapp-btn {
+    background: #25D366;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  .reserve-form .whatsapp-btn:hover { background: #1ebd5b; transform: translateY(-2px); }
+  .reserve-form .whatsapp-btn svg { width: 16px; height: 16px; fill: currentColor; }
+  .reserve-note {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 16px;
+    color: rgba(252, 245, 232, 0.7);
+    margin-top: 16px;
+  }
+
+  /* =================================================================
+     VISIT / FOOTER
+  ================================================================= */
+  .visit {
+    background: var(--charcoal-deep);
+    color: var(--cream);
+    padding: 120px 0 60px;
+  }
+  .visit-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 56px;
+    padding-bottom: 80px;
+    border-bottom: 1px solid rgba(201, 168, 108, 0.16);
+  }
+  @media (max-width: 980px) { .visit-grid { grid-template-columns: 1fr 1fr; gap: 48px; } }
+  @media (max-width: 600px) { .visit-grid { grid-template-columns: 1fr; gap: 40px; } }
+  .visit-brand .mark {
+    font-family: var(--serif); font-style: italic; font-weight: 500;
+    font-size: 44px; line-height: 1;
+    margin-bottom: 8px;
+    color: var(--cream);
+  }
+  .visit-brand .sub {
+    font-size: 10px; letter-spacing: 0.36em; text-transform: uppercase;
+    color: rgba(245, 237, 224, 0.55);
+    margin-bottom: 28px;
+  }
+  .visit-brand p {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.55;
+    color: rgba(245, 237, 224, 0.7);
+    max-width: 340px;
+  }
+  .visit-col h4 {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    font-weight: 600;
+    margin-bottom: 22px;
+  }
+  .visit-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .visit-col li, .visit-col a {
+    font-size: 15px;
+    color: rgba(245, 237, 224, 0.82);
+    line-height: 1.5;
+  }
+  .visit-col a:hover { color: var(--gold-soft); }
+  .visit-col .row {
+    display: flex; justify-content: space-between; gap: 12px;
+    font-variant-numeric: tabular-nums;
+  }
+  .visit-col .row .day { color: rgba(245, 237, 224, 0.6); }
+  .visit-col .row .time { color: var(--cream); }
+
+  .visit-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    padding-top: 36px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: rgba(245, 237, 224, 0.5);
+    letter-spacing: 0.06em;
+  }
+  .visit-foot .credits { display: flex; gap: 24px; flex-wrap: wrap; }
+
+  /* ---------------- Fade-in ---------------- */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .reveal.in { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav" data-screen-label="Nav">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">
+      <span class="mark">La Grotta</span>
+      <span class="sub">Leipzig · Est. 2001</span>
+    </a>
+    <div class="nav-links">
+      <a href="#oven">The Oven</a>
+      <a href="#showcase">Pizza</a>
+      <a href="menu.html">Menu</a>
+      <a href="#place">The Grotta</a>
+      <a href="#visit">Visit</a>
+      <a href="#reserve" class="nav-cta">Reserve</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" data-screen-label="Hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span>Leipzig</span><span class="bullet"></span><span>Ristorante & Pizzeria</span><span class="bullet"></span><span>since 2001</span>
+    </div>
+    <h1 class="hero-title">La Grotta</h1>
+    <p class="hero-tagline">A stone grotto in the heart of Leipzig, a copper-domed wood oven, and <em>over one hundred pizzas</em> drawn from every corner of Italy.</p>
+    <div class="hero-meta">
+      <span class="stars">★★★★★</span>
+      <span><strong>4.8</strong> · 2,547 reviews on Google</span>
+      <span class="dot"></span>
+      <span>Open tonight until 23:30</span>
+    </div>
+    <div class="hero-ctas">
+      <a href="#reserve" class="btn btn-primary">Reserve a Table <span class="arrow">→</span></a>
+      <a href="menu.html" class="btn btn-ghost">View the Menu</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</header>
+
+<!-- ============ RIBBON / INTRO ============ -->
+<section class="ribbon" data-screen-label="Intro">
+  <div class="container">
+    <div class="ribbon-head reveal">
+      <div class="ornament">Benvenuti</div>
+      <h2 class="title">A little corner of <em>Italia</em>,<br />tucked beneath Leipzig.</h2>
+      <p class="lede">For twenty-five years our family has rolled dough by hand, simmered sugo on the slow flame, and welcomed Leipzig into a candle-lit grotto built of stone and song. Nothing has changed. Nothing needs to.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar reveal">
+        <div class="pillar-num">I.</div>
+        <h3 class="pillar-title">Wood-fired in <em>90 seconds</em></h3>
+        <p class="pillar-body">Every pizza meets the floor of a 480°C copper-domed oven, fed with beech and Italian olive wood. Charred, blistered, alive.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-num">II.</div>
+        <h3 class="pillar-title">A family <em>recipe book</em></h3>
+        <p class="pillar-body">San Marzano tomatoes from Campania, fior-di-latte from Caserta, flour milled to Caputo's Tipo "00". The pantry our nonna would recognise.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-num">III.</div>
+        <h3 class="pillar-title">A grotto for <em>long evenings</em></h3>
+        <p class="pillar-body">Vaulted stone, flickering candles, espresso that lasts until midnight. The room invites you to stay — most guests do.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE OVEN ============ -->
+<section class="oven" id="oven" data-screen-label="The Oven">
+  <div class="container oven-grid">
+    <div class="oven-img reveal">
+      <img src="assets/photos/pizza-quattro-formaggi.png" alt="Wood-fired pizza, fresh from the copper oven" />
+      <div class="oven-badge">Forno a legna</div>
+    </div>
+    <div class="oven-content reveal">
+      <div class="eyebrow">The Heart of the House</div>
+      <h2>One oven.<br />One <em>fire.</em><br />Burning since 2001.</h2>
+      <p>Built brick by brick by a third-generation forno-maker from Naples, our oven has never gone cold. It is fed before sunrise and runs through the last guest's dessert. The fire is the head chef — we just listen to it.</p>
+      <p>Every dough is matured for at least 48 hours. Some — the special doughs — rest for 72. You can taste the time.</p>
+      <div class="oven-stats">
+        <div>
+          <div class="stat-num">480<em>°</em></div>
+          <div class="stat-label">Cooking floor</div>
+        </div>
+        <div>
+          <div class="stat-num">90<em>s</em></div>
+          <div class="stat-label">From peel to plate</div>
+        </div>
+        <div>
+          <div class="stat-num">25<em>yr</em></div>
+          <div class="stat-label">Unbroken fire</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PIZZA SHOWCASE ============ -->
+<section class="showcase" id="showcase" data-screen-label="Pizza Showcase">
+  <div class="container">
+    <div class="showcase-head reveal">
+      <div class="titles">
+        <div class="eyebrow">Pizza · Una Selezione</div>
+        <h2>Five pizzas <em>tonight</em>.<br />Ninety-five more <em>waiting.</em></h2>
+      </div>
+      <div class="meta">
+        <strong>104</strong>
+        <span>pizzas on the menu</span>
+      </div>
+    </div>
+
+    <div class="pizza-grid">
+      <article class="pizza-card wide reveal">
+        <img src="assets/photos/pizza-overhead.png" alt="Pizza Diavola" />
+        <div class="pizza-info">
+          <div>
+            <div class="name">Diavola della Casa</div>
+            <div class="desc">San Marzano, fior-di-latte, spicy Calabrian salame, fresh chilli, basil, a drizzle of chilli-honey from the oven.</div>
+          </div>
+          <div class="price">14,90</div>
+        </div>
+      </article>
+      <article class="pizza-card reveal">
+        <img src="assets/photos/pizza-quattro-formaggi.png" alt="Quattro Formaggi" />
+        <div class="pizza-info">
+          <div>
+            <div class="name">Quattro Formaggi</div>
+          </div>
+          <div class="price">13,90</div>
+        </div>
+      </article>
+      <article class="pizza-card reveal">
+        <img src="assets/photos/pizza-prosciutto.png" alt="Prosciutto e Rucola" />
+        <div class="pizza-info">
+          <div>
+            <div class="name">Prosciutto e Rucola</div>
+          </div>
+          <div class="price">15,50</div>
+        </div>
+      </article>
+      <article class="pizza-card reveal">
+        <img src="assets/photos/calzone.png" alt="Calzone alla Grotta" />
+        <div class="pizza-info">
+          <div>
+            <div class="name">Calzone alla Grotta</div>
+          </div>
+          <div class="price">14,50</div>
+        </div>
+      </article>
+      <article class="pizza-card reveal">
+        <img src="assets/photos/pasta-spread.png" alt="Pizza Vegetariana" />
+        <div class="pizza-info">
+          <div>
+            <div class="name">Vegetariana del Mercato</div>
+          </div>
+          <div class="price">13,50</div>
+        </div>
+      </article>
+    </div>
+
+    <div class="showcase-foot reveal">
+      <div class="note">— and ninety-nine more, from Margherita to Mare e Monti —</div>
+      <a href="menu.html" class="btn btn-outline">Browse all 104 Pizzas <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE PLACE ============ -->
+<section class="place" id="place" data-screen-label="The Grotta">
+  <div class="container place-grid">
+    <div class="place-img reveal">
+      <img src="assets/photos/grotto-interior.png" alt="La Grotta dining room — vaulted stone ceilings, warm candlelight" />
+    </div>
+    <div class="place-content reveal">
+      <div class="eyebrow">La Sala</div>
+      <h2>Stone walls.<br />Candle <em>light.</em><br />Long evenings.</h2>
+      <p>We built La Grotta into the cellar of a 19th-century Leipzig townhouse — vaulted brick, flagstone floor, fireplaces still warm from the morning. Eighty seats inside, twenty-two on the courtyard terrace under fig trees, three private alcoves for evenings that should not be interrupted.</p>
+      <div class="place-features">
+        <div class="place-feature">
+          <div class="label">Capacity</div>
+          <div class="value">80 inside · 22 on the terrace</div>
+        </div>
+        <div class="place-feature">
+          <div class="label">Private Dining</div>
+          <div class="value">Three vaulted alcoves, up to 14 guests</div>
+        </div>
+        <div class="place-feature">
+          <div class="label">Cellar</div>
+          <div class="value">180 Italian wines, six on tap</div>
+        </div>
+        <div class="place-feature">
+          <div class="label">Kitchen</div>
+          <div class="value">Open through to 23:00, Fri–Sat to 23:30</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PASTA / DESSERT DUO ============ -->
+<section class="duo" data-screen-label="Pasta & Dessert">
+  <div class="container duo-grid">
+    <article class="duo-card reveal">
+      <img src="assets/photos/pasta-spread.png" alt="Hand-cut pasta" />
+      <div class="duo-content">
+        <div class="top">
+          <div class="badge">Pasta Fatta in Casa</div>
+          <div class="num">— II —</div>
+        </div>
+        <div>
+          <h3>Pasta, rolled <em>by hand</em><br />every morning.</h3>
+          <p>Tagliatelle, ravioli, gnocchi di patate, pappardelle al cinghiale. Made before the doors open, finished à la minute in copper pans.</p>
+          <a href="menu.html#pasta" class="duo-link">See the Pasta <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </article>
+    <article class="duo-card reveal">
+      <img src="assets/photos/tiramisu.png" alt="House tiramisu" />
+      <div class="duo-content">
+        <div class="top">
+          <div class="badge">Dolci della Casa</div>
+          <div class="num">— III —</div>
+        </div>
+        <div>
+          <h3>Tiramisù as it was <em>meant</em> to be.</h3>
+          <p>Layered each morning with Sicilian mascarpone and a strong espresso from the old La Marzocco. Nothing more, nothing less.</p>
+          <a href="menu.html#dolci" class="duo-link">See the Desserts <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="reviews" data-screen-label="Reviews">
+  <div class="container">
+    <div class="reviews-head reveal">
+      <div class="ornament">Cosa Dicono Gli Ospiti</div>
+      <h2>Leipzig's <em>favourite</em><br />Italian for 25 years.</h2>
+      <div class="reviews-rating">
+        <span class="stars">★★★★★</span>
+        <strong>4.8</strong>
+        <span>· 2,547 Google reviews · #1 in Leipzig-Mitte</span>
+      </div>
+    </div>
+    <div class="review-grid">
+      <article class="review reveal">
+        <div class="stars">★★★★★</div>
+        <div class="quote">The closest I've come to my grandmother's kitchen in Salerno. The Diavola is genuinely the best pizza I've had north of the Alps — and I am not exaggerating.</div>
+        <div class="by">
+          <div class="avatar">M</div>
+          <div class="meta-by">
+            <div class="name">Matteo R.</div>
+            <div class="when">Local Guide · 3 weeks ago</div>
+          </div>
+        </div>
+      </article>
+      <article class="review reveal">
+        <div class="stars">★★★★★</div>
+        <div class="quote">We came for our anniversary and the staff seated us in one of the candle-lit alcoves without a word. Pappardelle al cinghiale was incredible. We will be back every year.</div>
+        <div class="by">
+          <div class="avatar">A</div>
+          <div class="meta-by">
+            <div class="name">Anneliese K.</div>
+            <div class="when">2 months ago</div>
+          </div>
+        </div>
+      </article>
+      <article class="review reveal">
+        <div class="stars">★★★★★</div>
+        <div class="quote">Hundred-plus pizzas on the menu and I have not had a bad one yet. The wine list is the deepest in Leipzig and the tiramisu makes me genuinely emotional.</div>
+        <div class="by">
+          <div class="avatar">D</div>
+          <div class="meta-by">
+            <div class="name">David S.</div>
+            <div class="when">1 month ago</div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESERVE ============ -->
+<section class="reserve" id="reserve" data-screen-label="Reserve">
+  <div class="container reserve-inner">
+    <div class="ornament">Prenotazione</div>
+    <h2 class="reveal">A table for the<br /><em>long evening</em>?</h2>
+    <p class="reveal">Tables for two through fourteen, the Freisitz reopens 1st April. Pick a date below — we'll meet you on WhatsApp with the message already written.</p>
+
+    <form class="reserve-form reveal" id="reserve-form" onsubmit="return false;">
+      <div class="field">
+        <label for="r-date">Date</label>
+        <input type="date" id="r-date" required />
+      </div>
+      <div class="field">
+        <label for="r-time">Time</label>
+        <select id="r-time" required>
+          <option value="">Choose…</option>
+          <option>11:30</option><option>12:00</option><option>12:30</option><option>13:00</option><option>13:30</option><option>14:00</option>
+          <option>17:30</option><option>18:00</option><option>18:30</option><option selected>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option><option>21:30</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="r-people">Guests</label>
+        <select id="r-people" required>
+          <option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>12</option><option>14</option><option>16+</option>
+        </select>
+      </div>
+      <div class="field field-wide" style="grid-column: span 3;">
+        <label for="r-name">Your name (optional)</label>
+        <input type="text" id="r-name" placeholder="Wer kommt zu uns?" />
+      </div>
+      <div class="submit-row">
+        <a id="r-whatsapp" href="#" target="_blank" rel="noopener noreferrer" class="btn whatsapp-btn">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.001 5.333c-5.891 0-10.667 4.776-10.667 10.667 0 1.882.49 3.727 1.42 5.347L5.334 26.667l5.473-1.435a10.624 10.624 0 0 0 5.194 1.323c5.891 0 10.667-4.776 10.667-10.666 0-2.852-1.111-5.531-3.13-7.55-2.018-2.018-4.697-3.129-7.537-3.006Zm0 19.467a8.78 8.78 0 0 1-4.47-1.225l-.32-.19-3.249.852.867-3.169-.21-.327a8.795 8.795 0 0 1-1.347-4.68c0-4.853 3.945-8.798 8.798-8.798 2.353 0 4.564.916 6.226 2.579a8.737 8.737 0 0 1 2.578 6.219c0 4.853-3.945 8.798-8.798 8.798l-.075-.059Zm4.826-6.591c-.264-.132-1.564-.772-1.806-.86-.242-.088-.418-.132-.594.132s-.683.86-.837 1.036c-.154.176-.308.198-.572.066-.264-.132-1.116-.412-2.124-1.31a8.04 8.04 0 0 1-1.49-1.85c-.154-.264-.016-.408.116-.54.119-.119.264-.308.396-.462.132-.154.176-.264.264-.44.088-.176.044-.33-.022-.462-.066-.132-.594-1.43-.815-1.956-.213-.514-.434-.444-.594-.452-.154-.008-.33-.01-.506-.01a.972.972 0 0 0-.704.33c-.242.264-.924.903-.924 2.201s.946 2.553 1.078 2.729c.132.176 1.86 2.838 4.504 3.98.629.272 1.121.434 1.504.555.633.201 1.21.173 1.665.105.508-.076 1.564-.64 1.785-1.258.22-.617.22-1.146.154-1.258-.066-.111-.242-.176-.506-.308Z"/></svg>
+          Reserve via WhatsApp
+        </a>
+        <a href="tel:+4934196299744" class="btn btn-outline-light">Or call · 0341 962 99 74</a>
+      </div>
+      <div class="reserve-note" style="grid-column: 1 / -1; text-align: center;">
+        We reply within 30 minutes during opening hours. Bookings open 60 days ahead.
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ VISIT / FOOTER ============ -->
+<footer class="visit" id="visit" data-screen-label="Visit">
+  <div class="container">
+    <div class="visit-grid">
+      <div class="visit-brand">
+        <div class="mark">La Grotta</div>
+        <div class="sub">Ristorante · Pizzeria · since 2001</div>
+        <p>A family-run grotto in the heart of Leipzig, serving Italy the way our nonna would.</p>
+      </div>
+      <div class="visit-col">
+        <h4>Find Us</h4>
+        <ul>
+          <li>Ratsfreischulstraße 6–8</li>
+          <li>04109 Leipzig · Zentrum</li>
+          <li><a href="https://www.google.com/maps/search/?api=1&query=La+Grotta+Ratsfreischulstra%C3%9Fe+6-8+04109+Leipzig" target="_blank" rel="noopener">Open in Maps →</a></li>
+          <li style="margin-top: 8px;"><a href="tel:+4934196299744">0341 962 99 74</a></li>
+          <li><a href="mailto:info@lagrottaleipzig.de">info@lagrottaleipzig.de</a></li>
+        </ul>
+      </div>
+      <div class="visit-col">
+        <h4>Hours</h4>
+        <ul>
+          <li class="row"><span class="day">Mon – Thu</span><span class="time">11:30 – 23:00</span></li>
+          <li class="row"><span class="day">Friday</span><span class="time">11:30 – 23:30</span></li>
+          <li class="row"><span class="day">Saturday</span><span class="time">11:30 – 23:30</span></li>
+          <li class="row"><span class="day">Sunday</span><span class="time">11:30 – 23:00</span></li>
+          <li class="row" style="margin-top: 8px; padding-top: 12px; border-top: 1px solid rgba(201,168,108,0.16);"><span class="day">Kitchen closes</span><span class="time">30 min prior</span></li>
+        </ul>
+      </div>
+      <div class="visit-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="menu.html">The Full Menu</a></li>
+          <li><a href="#">Wine List</a></li>
+          <li><a href="#">Private Events</a></li>
+          <li><a href="#">Gift Vouchers</a></li>
+          <li><a href="#">Take-away & Lieferando</a></li>
+          <li><a href="#">Stellenangebote</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="visit-foot">
+      <div>© 2026 La Grotta Ristorante GmbH · Leipzig</div>
+      <div class="credits">
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+        <a href="#">AGB</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ---- WhatsApp reservation ----
+  // Replace this with the real WhatsApp business number (international, no + or spaces)
+  const WHATSAPP_NUMBER = '4934196299744';
+  const dateEl = document.getElementById('r-date');
+  const timeEl = document.getElementById('r-time');
+  const peopleEl = document.getElementById('r-people');
+  const nameEl = document.getElementById('r-name');
+  const waBtn = document.getElementById('r-whatsapp');
+  // Default to tomorrow
+  if (dateEl) {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    dateEl.value = tomorrow.toISOString().slice(0, 10);
+    dateEl.min = new Date().toISOString().slice(0, 10);
+  }
+  function buildWaLink() {
+    const d = dateEl?.value || '____';
+    const t = timeEl?.value || '____';
+    const p = peopleEl?.value || '_';
+    const n = (nameEl?.value || '').trim();
+    const lines = [
+      'Buongiorno La Grotta!',
+      '',
+      'Ich möchte gerne einen Tisch reservieren:',
+      `• Datum: ${d}`,
+      `• Uhrzeit: ${t}`,
+      `• Personen: ${p}`,
+    ];
+    if (n) lines.push(`• Name: ${n}`);
+    lines.push('', 'Grazie mille! 🍕');
+    const msg = encodeURIComponent(lines.join('\n'));
+    waBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+  }
+  [dateEl, timeEl, peopleEl, nameEl].forEach(el => el && el.addEventListener('input', buildWaLink));
+  buildWaLink();
+
+  // Nav scroll state
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 24);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Parallax hero
+  const heroBg = document.querySelector('.hero-bg');
+  if (heroBg) {
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (y < 800) heroBg.style.transform = `scale(1.06) translateY(${y * 0.15}px)`;
+    }, { passive: true });
+  }
+</script>
+
+</body>
+</html>
