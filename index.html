@@ -149,6 +149,37 @@
     letter-spacing: 0.16em !important;
   }
   .nav-cta:hover { background: var(--terracotta-deep); color: var(--cream-soft) !important; }
+
+  /* Language toggle */
+  .lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid rgba(245, 237, 224, 0.32);
+    border-radius: 999px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .lang-toggle button {
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: rgba(245, 237, 224, 0.7);
+    padding: 7px 13px;
+    transition: background 0.2s, color 0.2s;
+    line-height: 1;
+  }
+  .lang-toggle button:hover { color: var(--cream); }
+  .lang-toggle button.active {
+    background: var(--terracotta);
+    color: var(--cream-soft);
+  }
   @media (max-width: 880px) { .nav-links a:not(.nav-cta) { display: none; } }
 
   /* =================================================================
@@ -791,79 +822,95 @@
   }
   .reserve .btn-outline-light:hover { background: rgba(252, 245, 232, 0.12); border-color: var(--cream-soft); }
 
-  /* ---- Reservation form ---- */
-  .reserve-form {
-    margin: 48px auto 32px;
-    max-width: 720px;
-    background: rgba(15, 8, 4, 0.22);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(252, 245, 232, 0.22);
-    border-radius: 4px;
-    padding: 32px 32px 28px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px 22px;
-    text-align: left;
+  /* ---- Reservation — call to book ---- */
+  .reserve-call {
+    margin: 52px auto 0;
+    max-width: 560px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
   }
-  @media (max-width: 720px) { .reserve-form { grid-template-columns: 1fr 1fr; } .reserve-form .field-wide { grid-column: span 2; } }
-  @media (max-width: 460px) { .reserve-form { grid-template-columns: 1fr; } .reserve-form .field-wide { grid-column: auto; } }
-  .reserve-form .field { display: flex; flex-direction: column; gap: 8px; }
-  .reserve-form label {
+  .call-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    padding: 22px 40px 22px 28px;
+    background: var(--cream-soft);
+    border-radius: 999px;
+    color: var(--charcoal);
+    box-shadow: 0 20px 48px -18px rgba(15, 8, 4, 0.6);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .call-cta:hover { transform: translateY(-3px); box-shadow: 0 28px 60px -20px rgba(15, 8, 4, 0.7); }
+  .call-cta-icon {
+    width: 52px; height: 52px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--terracotta);
+    color: var(--cream-soft);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .call-cta-icon svg { width: 24px; height: 24px; }
+  .call-cta-text { display: flex; flex-direction: column; text-align: left; gap: 2px; }
+  .call-cta-label {
+    font-size: 11px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--terracotta-deep);
+  }
+  .call-cta-number {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--charcoal);
+  }
+  .reserve-hours-row {
+    display: flex;
+    gap: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-top: 1px solid rgba(252, 245, 232, 0.28);
+    border-bottom: 1px solid rgba(252, 245, 232, 0.28);
+    width: 100%;
+  }
+  .reserve-hours-row > div {
+    flex: 1;
+    min-width: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 18px 12px;
+  }
+  .reserve-hours-row > div + div { border-left: 1px solid rgba(252, 245, 232, 0.28); }
+  @media (max-width: 480px) {
+    .reserve-hours-row > div + div { border-left: none; border-top: 1px solid rgba(252, 245, 232, 0.28); }
+  }
+  .reserve-hours-row .k {
     font-size: 10px;
-    letter-spacing: 0.28em;
+    letter-spacing: 0.26em;
     text-transform: uppercase;
     color: var(--gold-soft);
     font-weight: 600;
   }
-  .reserve-form input,
-  .reserve-form select {
+  .reserve-hours-row .v {
     font-family: var(--serif);
     font-size: 19px;
-    padding: 12px 14px;
-    background: rgba(252, 245, 232, 0.08);
-    border: 1px solid rgba(252, 245, 232, 0.32);
-    border-radius: 4px;
     color: var(--cream-soft);
-    width: 100%;
-    appearance: none;
-    -webkit-appearance: none;
-    cursor: pointer;
-    transition: border-color 0.2s, background 0.2s;
+    letter-spacing: 0.01em;
+    font-variant-numeric: tabular-nums;
   }
-  .reserve-form input::placeholder { color: rgba(252, 245, 232, 0.5); }
-  .reserve-form input:focus,
-  .reserve-form select:focus {
-    outline: none;
-    border-color: var(--gold-soft);
-    background: rgba(252, 245, 232, 0.14);
-  }
-  .reserve-form select option { background: var(--charcoal-deep); color: var(--cream-soft); }
-  .reserve-form input[type="date"] { color-scheme: dark; }
-  .reserve-form .submit-row {
-    grid-column: 1 / -1;
-    display: flex;
-    gap: 14px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 8px;
-    padding-top: 22px;
-    border-top: 1px dashed rgba(252, 245, 232, 0.22);
-  }
-  .reserve-form .whatsapp-btn {
-    background: #25D366;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-  .reserve-form .whatsapp-btn:hover { background: #1ebd5b; transform: translateY(-2px); }
-  .reserve-form .whatsapp-btn svg { width: 16px; height: 16px; fill: currentColor; }
   .reserve-note {
     font-family: var(--serif);
     font-style: italic;
-    font-size: 16px;
-    color: rgba(252, 245, 232, 0.7);
-    margin-top: 16px;
+    font-size: 17px;
+    color: rgba(252, 245, 232, 0.72);
+    text-align: center;
+    max-width: 440px;
   }
 
   /* =================================================================
@@ -951,12 +998,16 @@
       <span class="sub">Leipzig · Est. 2001</span>
     </a>
     <div class="nav-links">
-      <a href="#oven">The Oven</a>
+      <a href="#oven" data-de="Der Ofen">The Oven</a>
       <a href="#showcase">Pizza</a>
-      <a href="menu.html">Menu</a>
-      <a href="#place">The Grotta</a>
-      <a href="#visit">Visit</a>
-      <a href="#reserve" class="nav-cta">Reserve</a>
+      <a href="menu.html" data-de="Speisekarte">Menu</a>
+      <a href="#place" data-de="Die Grotta">The Grotta</a>
+      <a href="#visit" data-de="Besuch">Visit</a>
+      <a href="#reserve" class="nav-cta" data-de="Reservieren">Reserve</a>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang-btn="de" aria-pressed="false">DE</button>
+      </div>
     </div>
   </div>
 </nav>
@@ -966,47 +1017,47 @@
   <div class="hero-bg"></div>
   <div class="hero-inner">
     <div class="hero-eyebrow">
-      <span>Leipzig</span><span class="bullet"></span><span>Restaurant & Pizzeria</span><span class="bullet"></span><span>since 2001</span>
+      <span data-de="Leipzig">Leipzig</span><span class="bullet"></span><span data-de="Restaurant & Pizzeria">Restaurant & Pizzeria</span><span class="bullet"></span><span data-de="seit 2001">since 2001</span>
     </div>
     <h1 class="hero-title">La Grotta</h1>
-    <p class="hero-tagline">A stone grotto in the heart of Leipzig, a copper-domed wood oven, and <em>over one hundred pizzas</em> drawn from every corner of Italy.</p>
+    <p class="hero-tagline" data-de="Eine steinerne Grotte im Herzen Leipzigs, ein kuppelförmiger Holzofen und <em>über einhundert Pizzen</em> aus allen Ecken Italiens.">A stone grotto in the heart of Leipzig, a copper-domed wood oven, and <em>over one hundred pizzas</em> drawn from every corner of Italy.</p>
     <div class="hero-meta">
       <span class="stars">★★★★★</span>
-      <span><strong>4.8</strong> · 2,547 reviews on Google</span>
+      <span data-de="<strong>4,8</strong> · 2.547 Bewertungen auf Google"><strong>4.8</strong> · 2,547 reviews on Google</span>
       <span class="dot"></span>
-      <span>Open tonight until 23:30</span>
+      <span data-de="Heute geöffnet bis 23:30">Open tonight until 23:30</span>
     </div>
     <div class="hero-ctas">
-      <a href="#reserve" class="btn btn-primary">Reserve a Table <span class="arrow">→</span></a>
-      <a href="menu.html" class="btn btn-ghost">View the Menu</a>
+      <a href="#reserve" class="btn btn-primary" data-de="Tisch reservieren <span class=&quot;arrow&quot;>→</span>">Reserve a Table <span class="arrow">→</span></a>
+      <a href="menu.html" class="btn btn-ghost" data-de="Zur Speisekarte">View the Menu</a>
     </div>
   </div>
-  <div class="hero-scroll">Scroll</div>
+  <div class="hero-scroll" data-de="Scrollen">Scroll</div>
 </header>
 
 <!-- ============ RIBBON / INTRO ============ -->
 <section class="ribbon" data-screen-label="Intro">
   <div class="container">
     <div class="ribbon-head reveal">
-      <div class="ornament">Welcome</div>
-      <h2 class="title">A little corner of <em>Italy</em>,<br />tucked beneath Leipzig.</h2>
-      <p class="lede">For twenty-five years our family has rolled dough by hand, simmered sugo on the slow flame, and welcomed Leipzig into a candle-lit grotto built of stone and song. Nothing has changed. Nothing needs to.</p>
+      <div class="ornament" data-de="Willkommen">Welcome</div>
+      <h2 class="title" data-de="Ein Stück <em>Italien</em>,<br />verborgen unter Leipzig.">A little corner of <em>Italy</em>,<br />tucked beneath Leipzig.</h2>
+      <p class="lede" data-de="Seit fünfundzwanzig Jahren rollt unsere Familie den Teig von Hand, lässt das Sugo auf kleiner Flamme köcheln und empfängt Leipzig in einer kerzenbeleuchteten Grotte aus Stein. Nichts hat sich geändert. Nichts muss sich ändern.">For twenty-five years our family has rolled dough by hand, simmered sugo on the slow flame, and welcomed Leipzig into a candle-lit grotto built of stone and song. Nothing has changed. Nothing needs to.</p>
     </div>
     <div class="pillars">
       <div class="pillar reveal">
         <div class="pillar-num">I.</div>
-        <h3 class="pillar-title">Wood-fired in <em>90 seconds</em></h3>
-        <p class="pillar-body">Every pizza meets the floor of a 480°C copper-domed oven, fed with beech and Italian olive wood. Charred, blistered, alive.</p>
+        <h3 class="pillar-title" data-de="In <em>90 Sekunden</em> gebacken">Wood-fired in <em>90 seconds</em></h3>
+        <p class="pillar-body" data-de="Jede Pizza berührt den Boden eines 480°C heißen Kuppelofens, befeuert mit Buche und italienischem Olivenholz. Geblistert, knusprig, lebendig.">Every pizza meets the floor of a 480°C copper-domed oven, fed with beech and Italian olive wood. Charred, blistered, alive.</p>
       </div>
       <div class="pillar reveal">
         <div class="pillar-num">II.</div>
-        <h3 class="pillar-title">A family <em>recipe book</em></h3>
-        <p class="pillar-body">San Marzano tomatoes from Campania, fior-di-latte from Caserta, flour milled to Caputo's Tipo "00". The pantry our grandmother would recognise.</p>
+        <h3 class="pillar-title" data-de="Ein <em>Familienrezept</em>">A family <em>recipe book</em></h3>
+        <p class="pillar-body" data-de="San-Marzano-Tomaten aus Kampanien, Fior di Latte aus Caserta, Mehl Tipo &quot;00&quot; von Caputo. Die Speisekammer, die unsere Großmutter wiedererkennen würde.">San Marzano tomatoes from Campania, fior-di-latte from Caserta, flour milled to Caputo's Tipo "00". The pantry our grandmother would recognise.</p>
       </div>
       <div class="pillar reveal">
         <div class="pillar-num">III.</div>
-        <h3 class="pillar-title">A grotto for <em>long evenings</em></h3>
-        <p class="pillar-body">Vaulted stone, flickering candles, espresso that lasts until midnight. The room invites you to stay — most guests do.</p>
+        <h3 class="pillar-title" data-de="Eine Grotte für <em>lange Abende</em>">A grotto for <em>long evenings</em></h3>
+        <p class="pillar-body" data-de="Gewölbter Stein, flackernde Kerzen, Espresso bis Mitternacht. Der Raum lädt zum Bleiben ein — die meisten Gäste tun es.">Vaulted stone, flickering candles, espresso that lasts until midnight. The room invites you to stay — most guests do.</p>
       </div>
     </div>
   </div>
@@ -1017,25 +1068,25 @@
   <div class="container oven-grid">
     <div class="oven-img reveal">
       <img src="assets/photos/pizza-quattro-formaggi.png" alt="Wood-fired pizza, fresh from the copper oven" />
-      <div class="oven-badge">Wood-Fired Oven</div>
+      <div class="oven-badge" data-de="Holzofen">Wood-Fired Oven</div>
     </div>
     <div class="oven-content reveal">
-      <div class="eyebrow">The Heart of the House</div>
-      <h2>One oven.<br />One <em>fire.</em><br />Burning since 2001.</h2>
-      <p>Built brick by brick by a third-generation forno-maker from Naples, our oven has never gone cold. It is fed before sunrise and runs through the last guest's dessert. The fire is the head chef — we just listen to it.</p>
-      <p>Every dough is matured for at least 48 hours. Some — the special doughs — rest for 72. You can taste the time.</p>
+      <div class="eyebrow" data-de="Das Herz des Hauses">The Heart of the House</div>
+      <h2 data-de="Ein Ofen.<br />Ein <em>Feuer.</em><br />Brennt seit 2001.">One oven.<br />One <em>fire.</em><br />Burning since 2001.</h2>
+      <p data-de="Stein für Stein erbaut von einem Ofenbauer aus Neapel in dritter Generation, ist unser Ofen nie erkaltet. Er wird vor Sonnenaufgang befeuert und läuft bis zum Dessert des letzten Gastes. Das Feuer ist der Chefkoch — wir hören ihm nur zu.">Built brick by brick by a third-generation forno-maker from Naples, our oven has never gone cold. It is fed before sunrise and runs through the last guest's dessert. The fire is the head chef — we just listen to it.</p>
+      <p data-de="Jeder Teig reift mindestens 48 Stunden. Manche — die besonderen — ruhen 72. Man schmeckt die Zeit.">Every dough is matured for at least 48 hours. Some — the special doughs — rest for 72. You can taste the time.</p>
       <div class="oven-stats">
         <div>
           <div class="stat-num">480<em>°</em></div>
-          <div class="stat-label">Cooking floor</div>
+          <div class="stat-label" data-de="Backfläche">Cooking floor</div>
         </div>
         <div>
           <div class="stat-num">90<em>s</em></div>
-          <div class="stat-label">From peel to plate</div>
+          <div class="stat-label" data-de="Vom Schieber zum Teller">From peel to plate</div>
         </div>
         <div>
           <div class="stat-num">25<em>yr</em></div>
-          <div class="stat-label">Unbroken fire</div>
+          <div class="stat-label" data-de="Ununterbrochenes Feuer">Unbroken fire</div>
         </div>
       </div>
     </div>
@@ -1047,12 +1098,12 @@
   <div class="container">
     <div class="showcase-head reveal">
       <div class="titles">
-        <div class="eyebrow">Pizza · A Selection</div>
-        <h2>Five pizzas <em>tonight</em>.<br />Ninety-five more <em>waiting.</em></h2>
+        <div class="eyebrow" data-de="Pizza · Eine Auswahl">Pizza · A Selection</div>
+        <h2 data-de="Fünf Pizzen <em>heute Abend</em>.<br />Fünfundneunzig weitere <em>warten.</em>">Five pizzas <em>tonight</em>.<br />Ninety-five more <em>waiting.</em></h2>
       </div>
       <div class="meta">
         <strong>104</strong>
-        <span>pizzas on the menu</span>
+        <span data-de="Pizzen auf der Karte">pizzas on the menu</span>
       </div>
     </div>
 
@@ -1062,7 +1113,7 @@
         <div class="pizza-info">
           <div>
             <div class="name">Diavola della Casa</div>
-            <div class="desc">San Marzano, fior-di-latte, spicy Calabrian salame, fresh chilli, basil, a drizzle of chilli-honey from the oven.</div>
+            <div class="desc" data-de="San Marzano, Fior di Latte, scharfe kalabrische Salami, frische Chili, Basilikum, ein Spritzer Chili-Honig aus dem Ofen.">San Marzano, fior-di-latte, spicy Calabrian salame, fresh chilli, basil, a drizzle of chilli-honey from the oven.</div>
           </div>
           <div class="price">14,90</div>
         </div>
@@ -1106,8 +1157,8 @@
     </div>
 
     <div class="showcase-foot reveal">
-      <div class="note">— and ninety-nine more, from Margherita to Mare e Monti —</div>
-      <a href="menu.html" class="btn btn-outline">Browse all 104 Pizzas <span class="arrow">→</span></a>
+      <div class="note" data-de="— und neunundneunzig weitere, von Margherita bis Mare e Monti —">— and ninety-nine more, from Margherita to Mare e Monti —</div>
+      <a href="menu.html" class="btn btn-outline" data-de="Alle 104 Pizzen ansehen <span class=&quot;arrow&quot;>→</span>">Browse all 104 Pizzas <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
@@ -1119,25 +1170,25 @@
       <img src="assets/photos/grotto-interior.png" alt="La Grotta dining room — vaulted stone ceilings, warm candlelight" />
     </div>
     <div class="place-content reveal">
-      <div class="eyebrow">The Dining Room</div>
-      <h2>Stone walls.<br />Candle <em>light.</em><br />Long evenings.</h2>
-      <p>We built La Grotta into the cellar of a 19th-century Leipzig townhouse — vaulted brick, flagstone floor, fireplaces still warm from the morning. Eighty seats inside, twenty-two on the courtyard terrace under fig trees, three private alcoves for evenings that should not be interrupted.</p>
+      <div class="eyebrow" data-de="Der Gastraum">The Dining Room</div>
+      <h2 data-de="Steinwände.<br />Kerzen<em>licht.</em><br />Lange Abende.">Stone walls.<br />Candle <em>light.</em><br />Long evenings.</h2>
+      <p data-de="Wir haben La Grotta im Keller eines Leipziger Stadthauses aus dem 19. Jahrhundert eingerichtet — Backsteingewölbe, Steinboden, Kamine, die schon am Morgen wärmen. Achtzig Plätze drinnen, zweiundzwanzig auf der Hofterrasse unter Feigenbäumen, drei private Nischen für Abende, die nicht unterbrochen werden sollten.">We built La Grotta into the cellar of a 19th-century Leipzig townhouse — vaulted brick, flagstone floor, fireplaces still warm from the morning. Eighty seats inside, twenty-two on the courtyard terrace under fig trees, three private alcoves for evenings that should not be interrupted.</p>
       <div class="place-features">
         <div class="place-feature">
-          <div class="label">Capacity</div>
-          <div class="value">80 inside · 22 on the terrace</div>
+          <div class="label" data-de="Plätze">Capacity</div>
+          <div class="value" data-de="80 drinnen · 22 auf der Terrasse">80 inside · 22 on the terrace</div>
         </div>
         <div class="place-feature">
-          <div class="label">Private Dining</div>
-          <div class="value">Three vaulted alcoves, up to 14 guests</div>
+          <div class="label" data-de="Private Tafel">Private Dining</div>
+          <div class="value" data-de="Drei gewölbte Nischen, bis zu 14 Gäste">Three vaulted alcoves, up to 14 guests</div>
         </div>
         <div class="place-feature">
-          <div class="label">Cellar</div>
-          <div class="value">180 Italian wines, six on tap</div>
+          <div class="label" data-de="Weinkeller">Cellar</div>
+          <div class="value" data-de="180 italienische Weine, sechs vom Fass">180 Italian wines, six on tap</div>
         </div>
         <div class="place-feature">
-          <div class="label">Kitchen</div>
-          <div class="value">Open through to 23:00, Fri–Sat to 23:30</div>
+          <div class="label" data-de="Küche">Kitchen</div>
+          <div class="value" data-de="Geöffnet bis 23:00, Fr–Sa bis 23:30">Open through to 23:00, Fri–Sat to 23:30</div>
         </div>
       </div>
     </div>
@@ -1151,13 +1202,13 @@
       <img src="assets/photos/pasta-spread.png" alt="Hand-cut pasta" />
       <div class="duo-content">
         <div class="top">
-          <div class="badge">Handmade Pasta</div>
+          <div class="badge" data-de="Hausgemachte Pasta">Handmade Pasta</div>
           <div class="num">— II —</div>
         </div>
         <div>
-          <h3>Pasta, rolled <em>by hand</em><br />every morning.</h3>
-          <p>Tagliatelle, ravioli, gnocchi di patate, pappardelle al cinghiale. Made before the doors open, finished à la minute in copper pans.</p>
-          <a href="menu.html#pasta" class="duo-link">See the Pasta <span class="arrow">→</span></a>
+          <h3 data-de="Pasta, <em>von Hand</em> gerollt<br />jeden Morgen.">Pasta, rolled <em>by hand</em><br />every morning.</h3>
+          <p data-de="Tagliatelle, Ravioli, Gnocchi di patate, Pappardelle al cinghiale. Vor Öffnung gemacht, à la minute in Kupferpfannen vollendet.">Tagliatelle, ravioli, gnocchi di patate, pappardelle al cinghiale. Made before the doors open, finished à la minute in copper pans.</p>
+          <a href="menu.html#pasta" class="duo-link" data-de="Zur Pasta <span class=&quot;arrow&quot;>→</span>">See the Pasta <span class="arrow">→</span></a>
         </div>
       </div>
     </article>
@@ -1165,13 +1216,13 @@
       <img src="assets/photos/tiramisu.png" alt="House tiramisu" />
       <div class="duo-content">
         <div class="top">
-          <div class="badge">House Desserts</div>
+          <div class="badge" data-de="Hausdesserts">House Desserts</div>
           <div class="num">— III —</div>
         </div>
         <div>
-          <h3>Tiramisù as it was <em>meant</em> to be.</h3>
-          <p>Layered each morning with Sicilian mascarpone and a strong espresso from the old La Marzocco. Nothing more, nothing less.</p>
-          <a href="menu.html#dolci" class="duo-link">See the Desserts <span class="arrow">→</span></a>
+          <h3 data-de="Tiramisù, wie es <em>sein soll</em>.">Tiramisù as it was <em>meant</em> to be.</h3>
+          <p data-de="Jeden Morgen geschichtet mit sizilianischem Mascarpone und einem kräftigen Espresso aus der alten La Marzocco. Nicht mehr, nicht weniger.">Layered each morning with Sicilian mascarpone and a strong espresso from the old La Marzocco. Nothing more, nothing less.</p>
+          <a href="menu.html#dolci" class="duo-link" data-de="Zu den Desserts <span class=&quot;arrow&quot;>→</span>">See the Desserts <span class="arrow">→</span></a>
         </div>
       </div>
     </article>
@@ -1182,45 +1233,45 @@
 <section class="reviews" data-screen-label="Reviews">
   <div class="container">
     <div class="reviews-head reveal">
-      <div class="ornament">What Our Guests Say</div>
-      <h2>Leipzig's <em>favourite</em><br />Italian for 25 years.</h2>
+      <div class="ornament" data-de="Was unsere Gäste sagen">What Our Guests Say</div>
+      <h2 data-de="Leipzigs <em>Lieblings</em>italiener<br />seit 25 Jahren.">Leipzig's <em>favourite</em><br />Italian for 25 years.</h2>
       <div class="reviews-rating">
         <span class="stars">★★★★★</span>
         <strong>4.8</strong>
-        <span>· 2,547 Google reviews · #1 in Leipzig-Mitte</span>
+        <span data-de="· 2.547 Google-Bewertungen · Nr. 1 in Leipzig-Mitte">· 2,547 Google reviews · #1 in Leipzig-Mitte</span>
       </div>
     </div>
     <div class="review-grid">
       <article class="review reveal">
         <div class="stars">★★★★★</div>
-        <div class="quote">The closest I've come to my grandmother's kitchen in Salerno. The Diavola is genuinely the best pizza I've had north of the Alps — and I am not exaggerating.</div>
+        <div class="quote" data-de="Das Nächste, was ich der Küche meiner Großmutter in Salerno gekommen bin. Die Diavola ist wirklich die beste Pizza, die ich nördlich der Alpen gegessen habe — und ich übertreibe nicht.">The closest I've come to my grandmother's kitchen in Salerno. The Diavola is genuinely the best pizza I've had north of the Alps — and I am not exaggerating.</div>
         <div class="by">
           <div class="avatar">M</div>
           <div class="meta-by">
             <div class="name">Matteo R.</div>
-            <div class="when">Local Guide · 3 weeks ago</div>
+            <div class="when" data-de="Local Guide · vor 3 Wochen">Local Guide · 3 weeks ago</div>
           </div>
         </div>
       </article>
       <article class="review reveal">
         <div class="stars">★★★★★</div>
-        <div class="quote">We came for our anniversary and the staff seated us in one of the candle-lit alcoves without a word. Pappardelle al cinghiale was incredible. We will be back every year.</div>
+        <div class="quote" data-de="Wir kamen zu unserem Hochzeitstag, und das Personal setzte uns wortlos in eine der kerzenbeleuchteten Nischen. Die Pappardelle al cinghiale waren unglaublich. Wir kommen jedes Jahr wieder.">We came for our anniversary and the staff seated us in one of the candle-lit alcoves without a word. Pappardelle al cinghiale was incredible. We will be back every year.</div>
         <div class="by">
           <div class="avatar">A</div>
           <div class="meta-by">
             <div class="name">Anneliese K.</div>
-            <div class="when">2 months ago</div>
+            <div class="when" data-de="vor 2 Monaten">2 months ago</div>
           </div>
         </div>
       </article>
       <article class="review reveal">
         <div class="stars">★★★★★</div>
-        <div class="quote">Hundred-plus pizzas on the menu and I have not had a bad one yet. The wine list is the deepest in Leipzig and the tiramisu makes me genuinely emotional.</div>
+        <div class="quote" data-de="Über hundert Pizzen auf der Karte und ich hatte noch keine schlechte. Die Weinkarte ist die umfangreichste in Leipzig und das Tiramisù rührt mich wirklich zu Tränen.">Hundred-plus pizzas on the menu and I have not had a bad one yet. The wine list is the deepest in Leipzig and the tiramisu makes me genuinely emotional.</div>
         <div class="by">
           <div class="avatar">D</div>
           <div class="meta-by">
             <div class="name">David S.</div>
-            <div class="when">1 month ago</div>
+            <div class="when" data-de="vor 1 Monat">1 month ago</div>
           </div>
         </div>
       </article>
@@ -1231,44 +1282,29 @@
 <!-- ============ RESERVE ============ -->
 <section class="reserve" id="reserve" data-screen-label="Reserve">
   <div class="container reserve-inner">
-    <div class="ornament">Reservations</div>
-    <h2 class="reveal">A table for the<br /><em>long evening</em>?</h2>
-    <p class="reveal">Tables for two through fourteen, the Freisitz reopens 1st April. Pick a date below — we'll meet you on WhatsApp with the message already written.</p>
+    <div class="ornament" data-de="Reservierung">Reservations</div>
+    <h2 class="reveal" data-de="Ein Tisch für den<br /><em>langen Abend</em>?">A table for the<br /><em>long evening</em>?</h2>
+    <p class="reveal" data-de="Tische für zwei bis vierzehn Personen, und die Gartenterrasse öffnet wieder am 1. April. Wir gehen von der Öffnung bis zum Schluss ans Telefon — rufen Sie an und wir halten Ihnen ein ruhiges Eckchen frei.">Tables for two through fourteen, and the garden terrace reopens 1st April. We answer the phone from open to close — give us a ring and we'll keep a quiet corner for you.</p>
 
-    <form class="reserve-form reveal" id="reserve-form" onsubmit="return false;">
-      <div class="field">
-        <label for="r-date">Date</label>
-        <input type="date" id="r-date" required />
+    <div class="reserve-call reveal">
+      <a href="tel:+4934196299744" class="call-cta">
+        <span class="call-cta-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </span>
+        <span class="call-cta-text">
+          <span class="call-cta-label" data-de="Zum Reservieren anrufen">Call to reserve</span>
+          <span class="call-cta-number">+49 341 962 99 74</span>
+        </span>
+      </a>
+      <div class="reserve-hours-row">
+        <div><span class="k" data-de="Mo–Do">Mon–Thu</span><span class="v">11:30 — 23:00</span></div>
+        <div><span class="k" data-de="Fr–Sa">Fri–Sat</span><span class="v">11:30 — 23:30</span></div>
+        <div><span class="k" data-de="Sonntag">Sunday</span><span class="v">11:30 — 23:00</span></div>
       </div>
-      <div class="field">
-        <label for="r-time">Time</label>
-        <select id="r-time" required>
-          <option value="">Choose…</option>
-          <option>11:30</option><option>12:00</option><option>12:30</option><option>13:00</option><option>13:30</option><option>14:00</option>
-          <option>17:30</option><option>18:00</option><option>18:30</option><option selected>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option><option>21:30</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="r-people">Guests</label>
-        <select id="r-people" required>
-          <option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>12</option><option>14</option><option>16+</option>
-        </select>
-      </div>
-      <div class="field field-wide" style="grid-column: span 3;">
-        <label for="r-name">Your name (optional)</label>
-        <input type="text" id="r-name" placeholder="Who's joining?" />
-      </div>
-      <div class="submit-row">
-        <a id="r-whatsapp" href="#" target="_blank" rel="noopener noreferrer" class="btn whatsapp-btn">
-          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.001 5.333c-5.891 0-10.667 4.776-10.667 10.667 0 1.882.49 3.727 1.42 5.347L5.334 26.667l5.473-1.435a10.624 10.624 0 0 0 5.194 1.323c5.891 0 10.667-4.776 10.667-10.666 0-2.852-1.111-5.531-3.13-7.55-2.018-2.018-4.697-3.129-7.537-3.006Zm0 19.467a8.78 8.78 0 0 1-4.47-1.225l-.32-.19-3.249.852.867-3.169-.21-.327a8.795 8.795 0 0 1-1.347-4.68c0-4.853 3.945-8.798 8.798-8.798 2.353 0 4.564.916 6.226 2.579a8.737 8.737 0 0 1 2.578 6.219c0 4.853-3.945 8.798-8.798 8.798l-.075-.059Zm4.826-6.591c-.264-.132-1.564-.772-1.806-.86-.242-.088-.418-.132-.594.132s-.683.86-.837 1.036c-.154.176-.308.198-.572.066-.264-.132-1.116-.412-2.124-1.31a8.04 8.04 0 0 1-1.49-1.85c-.154-.264-.016-.408.116-.54.119-.119.264-.308.396-.462.132-.154.176-.264.264-.44.088-.176.044-.33-.022-.462-.066-.132-.594-1.43-.815-1.956-.213-.514-.434-.444-.594-.452-.154-.008-.33-.01-.506-.01a.972.972 0 0 0-.704.33c-.242.264-.924.903-.924 2.201s.946 2.553 1.078 2.729c.132.176 1.86 2.838 4.504 3.98.629.272 1.121.434 1.504.555.633.201 1.21.173 1.665.105.508-.076 1.564-.64 1.785-1.258.22-.617.22-1.146.154-1.258-.066-.111-.242-.176-.506-.308Z"/></svg>
-          Reserve via WhatsApp
-        </a>
-        <a href="tel:+4934196299744" class="btn btn-outline-light">Or call · 0341 962 99 74</a>
-      </div>
-      <div class="reserve-note" style="grid-column: 1 / -1; text-align: center;">
-        We reply within 30 minutes during opening hours. Bookings open 60 days ahead.
-      </div>
-    </form>
+      <p class="reserve-note" data-de="Spontane Gäste sind willkommen, solange ein Tisch frei ist. Wochenenden sind drei Wochen im Voraus ausgebucht — rufen Sie frühzeitig an.">Walk-ins welcome when there's a table free. Weekends fill three weeks out — call early.</p>
+    </div>
   </div>
 </section>
 
@@ -1278,89 +1314,53 @@
     <div class="visit-grid">
       <div class="visit-brand">
         <div class="mark">La Grotta</div>
-        <div class="sub">Restaurant · Pizzeria · since 2001</div>
-        <p>A family-run grotto in the heart of Leipzig, serving Italy the way our grandmother would.</p>
+        <div class="sub" data-de="Restaurant · Pizzeria · seit 2001">Restaurant · Pizzeria · since 2001</div>
+        <p data-de="Eine familiengeführte Grotte im Herzen Leipzigs, die Italien so serviert, wie es unsere Großmutter täte.">A family-run grotto in the heart of Leipzig, serving Italy the way our grandmother would.</p>
       </div>
       <div class="visit-col">
-        <h4>Find Us</h4>
+        <h4 data-de="Finden Sie uns">Find Us</h4>
         <ul>
           <li>Ratsfreischulstraße 6–8</li>
-          <li>04109 Leipzig · Zentrum</li>
-          <li><a href="https://www.google.com/maps/search/?api=1&query=La+Grotta+Ratsfreischulstra%C3%9Fe+6-8+04109+Leipzig" target="_blank" rel="noopener">Open in Maps →</a></li>
+          <li data-de="04109 Leipzig · Zentrum">04109 Leipzig · City Centre</li>
+          <li><a href="https://www.google.com/maps/search/?api=1&query=La+Grotta+Ratsfreischulstra%C3%9Fe+6-8+04109+Leipzig" target="_blank" rel="noopener" data-de="In Maps öffnen →">Open in Maps →</a></li>
           <li style="margin-top: 8px;"><a href="tel:+4934196299744">0341 962 99 74</a></li>
           <li><a href="mailto:info@lagrottaleipzig.de">info@lagrottaleipzig.de</a></li>
         </ul>
       </div>
       <div class="visit-col">
-        <h4>Hours</h4>
+        <h4 data-de="Öffnungszeiten">Hours</h4>
         <ul>
-          <li class="row"><span class="day">Mon – Thu</span><span class="time">11:30 – 23:00</span></li>
-          <li class="row"><span class="day">Friday</span><span class="time">11:30 – 23:30</span></li>
-          <li class="row"><span class="day">Saturday</span><span class="time">11:30 – 23:30</span></li>
-          <li class="row"><span class="day">Sunday</span><span class="time">11:30 – 23:00</span></li>
-          <li class="row" style="margin-top: 8px; padding-top: 12px; border-top: 1px solid rgba(201,168,108,0.16);"><span class="day">Kitchen closes</span><span class="time">30 min prior</span></li>
+          <li class="row"><span class="day" data-de="Mo – Do">Mon – Thu</span><span class="time">11:30 – 23:00</span></li>
+          <li class="row"><span class="day" data-de="Freitag">Friday</span><span class="time">11:30 – 23:30</span></li>
+          <li class="row"><span class="day" data-de="Samstag">Saturday</span><span class="time">11:30 – 23:30</span></li>
+          <li class="row"><span class="day" data-de="Sonntag">Sunday</span><span class="time">11:30 – 23:00</span></li>
+          <li class="row" style="margin-top: 8px; padding-top: 12px; border-top: 1px solid rgba(201,168,108,0.16);"><span class="day" data-de="Küchenschluss">Kitchen closes</span><span class="time" data-de="30 Min. vorher">30 min prior</span></li>
         </ul>
       </div>
       <div class="visit-col">
-        <h4>Explore</h4>
+        <h4 data-de="Entdecken">Explore</h4>
         <ul>
-          <li><a href="menu.html">The Full Menu</a></li>
-          <li><a href="#">Wine List</a></li>
-          <li><a href="#">Private Events</a></li>
-          <li><a href="#">Gift Vouchers</a></li>
-          <li><a href="#">Take-away & Delivery</a></li>
-          <li><a href="#">Careers</a></li>
+          <li><a href="menu.html" data-de="Die ganze Speisekarte">The Full Menu</a></li>
+          <li><a href="#" data-de="Weinkarte">Wine List</a></li>
+          <li><a href="#" data-de="Private Veranstaltungen">Private Events</a></li>
+          <li><a href="#" data-de="Gutscheine">Gift Vouchers</a></li>
+          <li><a href="#" data-de="Abholung & Lieferung">Take-away & Delivery</a></li>
+          <li><a href="#" data-de="Karriere">Careers</a></li>
         </ul>
       </div>
     </div>
     <div class="visit-foot">
-      <div>© 2026 La Grotta Restaurant GmbH · Leipzig</div>
+      <div data-de="© 2026 La Grotta Restaurant GmbH · Leipzig">© 2026 La Grotta Restaurant GmbH · Leipzig</div>
       <div class="credits">
-        <a href="#">Legal Notice</a>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
+        <a href="#" data-de="Impressum">Legal Notice</a>
+        <a href="#" data-de="Datenschutz">Privacy</a>
+        <a href="#" data-de="AGB">Terms</a>
       </div>
     </div>
   </div>
 </footer>
 
 <script>
-  // ---- WhatsApp reservation ----
-  // Replace this with the real WhatsApp business number (international, no + or spaces)
-  const WHATSAPP_NUMBER = '4934196299744';
-  const dateEl = document.getElementById('r-date');
-  const timeEl = document.getElementById('r-time');
-  const peopleEl = document.getElementById('r-people');
-  const nameEl = document.getElementById('r-name');
-  const waBtn = document.getElementById('r-whatsapp');
-  // Default to tomorrow
-  if (dateEl) {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    dateEl.value = tomorrow.toISOString().slice(0, 10);
-    dateEl.min = new Date().toISOString().slice(0, 10);
-  }
-  function buildWaLink() {
-    const d = dateEl?.value || '____';
-    const t = timeEl?.value || '____';
-    const p = peopleEl?.value || '_';
-    const n = (nameEl?.value || '').trim();
-    const lines = [
-      'Hello La Grotta!',
-      '',
-      'I would like to reserve a table:',
-      `• Date: ${d}`,
-      `• Time: ${t}`,
-      `• Guests: ${p}`,
-    ];
-    if (n) lines.push(`• Name: ${n}`);
-    lines.push('', 'Thank you! 🍕');
-    const msg = encodeURIComponent(lines.join('\n'));
-    waBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
-  }
-  [dateEl, timeEl, peopleEl, nameEl].forEach(el => el && el.addEventListener('input', buildWaLink));
-  buildWaLink();
-
   // Nav scroll state
   const nav = document.getElementById('nav');
   const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 24);
@@ -1382,6 +1382,7 @@
     }, { passive: true });
   }
 </script>
+<script src="i18n.js"></script>
 
 </body>
 </html>
